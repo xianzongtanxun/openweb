@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<Window size="340,500" sizebox="2,2,2,2" bordersize="1,1,1,1" roundcorner="2,2" caption="0,0,0,62" mininfo="339,499" comment="窗口的初始尺寸" bkcolor="#FFFFFFFF">
+	<Include source="default_config.xml" />
+	<VerticalLayout bkcolor="#FFFFFFFF" bordersize="1,1,1,1" comment="整个窗口的背景" bkcolor="#FFFFFFFF"><!--  bkimage="back_ground.bmp"-->
+		<VerticalLayout height="36" comment="标题栏" bkcolor="#FFF4F5F6">
+			<HorizontalLayout name="hly_title" height="36" bkcolor="#FFF4F5F6">
+				<HorizontalLayout width="14"/>
+				<HorizontalLayout name="hly_titleopt" width="100" visible="false">
+					<Option name="opt_main" width="36" font="1" normalimage="tagopt_main_nor.png" hotimage="tagopt_main_hovpre.png" selectedimage="tagopt_main_hovpre.png" bkcolor="#FFF4F5F6" group="opt_group" selected="true"/>
+					<Option name="opt_userinfo" width="36" font="1" normalimage="tagopt_user_nor.png" hotimage="tagopt_user_hovpre.png" selectedimage="tagopt_user_hovpre.png" bkcolor="#FFF4F5F6" group="opt_group" selected="true"/>
+				</HorizontalLayout>
+				<HorizontalLayout>
+				</HorizontalLayout>
+				<Button name="minbtn" width="30" height="36" tooltip="点击最小化" normalimage="min_nor.png" hotimage="min_hovpre.png" pushedimage="min_hovpre.png"/>
+				<Button name="closebtn" width="30" height="36" tooltip="点击隐藏" normalimage="close_nor.png" hotimage="close_hovpre.png" pushedimage="close_hovpre.png"/>
+			</HorizontalLayout>
+		</VerticalLayout>
+		<TabLayout name="tab_detail" selectedid="0" comment="Tab容器" >
+			<VerticalLayout comment="TB0登录页" bkcolor="#FFFFFFFF">
+				<HorizontalLayout padding="110,20,0,0" width="120" height="162" bkimage="login_logo.png" />
+				<HorizontalLayout padding="40,40,0,0" width="260" height="35">
+					<Label width="42" height="23" font="1" align="left,bottom" text="手机号" textcolor="#FF666666"  />
+					<HorizontalLayout width="18" />
+					<Edit name="phone_num" width="200" height="23" font="1" align="left" textcolor="#FF333333" />
+				</HorizontalLayout>
+				<HorizontalLayout width="260" height="1" padding="40,0,0,0" bkcolor="#FFF0F0F0"/>
+				<HorizontalLayout height="10"/>
+				<HorizontalLayout padding="40,0,0,0" width="260" height="35">
+					<Label text="验证码" width="42" height="23" font="1" align="left,bottom" textcolor="#FF666666"  />
+					<HorizontalLayout width="18" />
+					<Edit name="check_code" width="132" height="23" font="1" align="left" textcolor="#FF333333" />
+					<Button name="snd_chk_code" width="68" height="23" font="1" align="left" text="发送验证码" textcolor="#ff1560FF" />
+				</HorizontalLayout>
+				<HorizontalLayout width="260" height="1" padding="40,0,0,0" bkcolor="#FFF0F0F0"/>
+				<HorizontalLayout height="10"/>
+				<HorizontalLayout padding="40,0,0,0" width="260" height="35">
+					<Label text="推荐人ID" width="48" height="23" font="1" align="left,bottom" bkcolor="#FFFFFFFF" textcolor="#FF666666"  />
+					<HorizontalLayout width="13" />
+					<Edit name="invite_code" width="165" height="23" font="1" align="left" textcolor="#FF333333" maxchar="15"/>
+				</HorizontalLayout>
+				<HorizontalLayout width="260" height="1" padding="40,0,0,0" bkcolor="#FFF0F0F0"/>
+				<HorizontalLayout  height="18" padding="40,0,0,0">
+					<HorizontalLayout name="hly_tips">
+						<Label width="12" height="12" bkimage="warning.png" padding="0,3,0,0" />
+						<HorizontalLayout width="5" />
+						<Label name="lbl_tip" width="200" font="1" align="left" text="手机号不正确，请确认后再操作" textcolor="#F74236" />
+					</HorizontalLayout>
+				</HorizontalLayout>
+				<HorizontalLayout height="6"/>
+				<Button name="btn_login" text="进入配置" width="260" height="40" normalimage="login_nor.png" hotimage="login_hov.png" pushedimage="login_pre.png" disabledimage="login_dis.png" font="1" textcolor="#FFFFFFFF" disabledtextcolor="#FFFFFFFF" align="center" padding="40,0,0,0" />
+			</VerticalLayout>
+			<VerticalLayout comment="TB1扫码加好友页" bkcolor="#FFFFFFFF">
+				<HorizontalLayout height="20" />
+				<Label height="30" font="13" text="用微信扫一扫，接收寻车消息" align="center" textcolor="#FF333333"/>
+				<HorizontalLayout height="80" />
+				<HorizontalLayout height="162">
+					<Label name="lbl_2weima" height="125" width="125" padding="36,0,0,0" bkcolor="#FFFFFFFF" />
+					<HorizontalLayout width="10" />
+					<VerticalLayout height="162" width="136" bkimage="invalide_num.png" bkcolor="#FFFFFFFF">
+						<HorizontalLayout height="70" />
+						<Label text="回复数据码" font="2" height="20" width="80" padding="40,0,0,0" textcolor="#FFFFFFFF" />
+						<Label name="lbl_codenum" font="8" height="20" width="80" padding="40,0,0,0" textcolor="#FFFFFFFF" />
+					</VerticalLayout>
+				</HorizontalLayout>
+				<HorizontalLayout height="29" />
+				<Label height="20" font="1" text="添加 车商精灵 到通讯录" align="center" textcolor="#FF999999" />
+				<HorizontalLayout height="10" />
+				<HorizontalLayout height="20" >
+					<HorizontalLayout width="120" />
+					<!--Label width="30" font="3" text="回复" /-->
+					<HorizontalLayout width="5" />
+					<!--Label name="lbl_codenum" width="50" font="3" text="123456" textcolor="#ff1560FF" /-->
+					<HorizontalLayout width="5" />
+					<!--Button name="btn_refresh" normalimage="fresh_nor.png" hotimage="fresh_hov.png" pushedimage="fresh_pre.png" width="16" height="16" /-->
+				</HorizontalLayout>
+				<HorizontalLayout height="27" />
+			</VerticalLayout>
+			<VerticalLayout comment="TB2登录微信页" bkcolor="#FFFFFFFF">
+				<HorizontalLayout height="30" />
+				<Label height="30" font="13" text="为确保运行正常" align="center" />
+				<Label height="30" font="13" text="请确保至少登录一个微信" align="center" />
+				<HorizontalLayout height="30" />
+				<Label name="lbl_weixin" height="195" width="240" bkimage="login_wechat.png" padding="50,0,0,0"/>
+				<HorizontalLayout height="43" />
+				<Button name="btn_loginweixin" text="登录微信" width="260" height="40" normalimage="login_nor.png" hotimage="login_hov.png" pushedimage="login_pre.png" disabledimage="login_dis.png" font="1" textcolor="#FFFFFFFF" disabledtextcolor="#FFFFFFFF" align="center" padding="40,0,0,0" />
+			</VerticalLayout>
+			<VerticalLayout comment="TB3主界面运行页" bkcolor="#FFFFFFFF">
+				<HorizontalLayout height="15" bkcolor="#FFFFFFFF"/>
+				<Label name="lbl_wx" height="16" font="1" text="登录微信" textcolor="#FF666666" align="center" bkcolor="#FFFFFFFF"/>
+				<HorizontalLayout height="5" bkcolor="#FFFFFFFF"/>
+				<HorizontalLayout height="47" bkcolor="#f8f8f8" comment="登录信息栏" bkcolor="#FFFFFFFF">  
+					<Container name="ctnr_running_wx" padding="10,10,10,0" height="36" width="240" bkcolor="#FFFFFFFF">
+						<Label name="btn_logo_0" float="true" width="36" height="36" visible="false" normalimage="add_wechat_nor.png" hotimage="add_wechat_hov.png" pushedimage="add_wechat_pre.png" bkcolor="#FFFFFFFF"/>
+						<Label name="btn_logo_1" float="true" width="36" height="36" visible="false" normalimage="add_wechat_nor.png" hotimage="add_wechat_hov.png" pushedimage="add_wechat_pre.png" bkcolor="#FFFFFFFF"/>
+						<Label name="btn_logo_2" float="true" width="36" height="36" visible="false" normalimage="add_wechat_nor.png" hotimage="add_wechat_hov.png" pushedimage="add_wechat_pre.png" bkcolor="#FFFFFFFF"/>
+						<Label name="btn_logo_3" float="true" width="36" height="36" visible="false" normalimage="add_wechat_nor.png" hotimage="add_wechat_hov.png" pushedimage="add_wechat_pre.png" bkcolor="#FFFFFFFF"/>
+						<Label name="btn_logo_4" float="true" width="36" height="36" visible="false" normalimage="add_wechat_nor.png" hotimage="add_wechat_hov.png" pushedimage="add_wechat_pre.png" bkcolor="#FFFFFFFF"/>
+						<Button name="btn_run_wx" float="true" width="36" height="36" pos="113,0,149,36" normalimage="add_wechat_nor.png" hotimage="add_wechat_hovpre.png" pushedimage="add_wechat_hovpre.png" bkcolor="#FFFFFFFF"/>
+					</Container>
+				</HorizontalLayout>
+				<HorizontalLayout height="20" bkcolor="#FFFFFFFF"/>
+				<HorizontalLayout height="20" bkcolor="#FFFFFFFF">
+					<Label name="lbl_msgto" height="20" font="1" text="" align="center" width="170" padding="36,0,8,0" textcolor="#FF666666" bkcolor="#FFFFFFFF" endellipsis="true"/>
+					<Button name="lbl_changewechat" width="28" height="20" font="1" align="left" text="管理" textcolor="#FF217CFF" hottextcolor="#FF0E57FF" padding="0,0,14,0" bkcolor="#FFFFFFFF"/>
+				</HorizontalLayout>
+				<HorizontalLayout height="30" bkcolor="#FFFFFFFF"/>
+				<HorizontalLayout height="50" bkcolor="#FFFFFFFF"/>
+				<HorizontalLayout height="59" bkcolor="#FFFFFFFF">
+					<Button name="btn_mCustom" width="48" height="48" normalimage="user_car_nor.png" hotimage="user_car_hov.png" pushedimage="user_car_pre.png" padding="58,11,0,0" bkcolor="#FFFFFFFF"/>
+					<HorizontalLayout width="49" bkcolor="#FFFFFFFF"/>
+					<Button name="btn_mCar" width="75" height="59" bkimage="user_group.png" bkcolor="#FFFFFFFF" />
+				</HorizontalLayout>
+				<HorizontalLayout height="35" bkcolor="#FFFFFFFF">
+					<Label width="50" text="管理客户" padding="58,0,0,0" bkcolor="#FFFFFFFF"/>
+					<HorizontalLayout width="47" bkcolor="#FFFFFFFF"/>
+					<Label width="50" text="发布车源" bkcolor="#FFFFFFFF" />
+				</HorizontalLayout>
+				<HorizontalLayout bkcolor="#FFFFFFFF">
+				</HorizontalLayout>
+				<HorizontalLayout height="20" bkcolor="#FFFFFFFF" visible="false"/>
+				<HorizontalLayout height="50" bkcolor="#FFFFFFFF" visible="false">
+					<Button name="btn_mGroupSend" width="48" height="48" normalimage="user_manager_nor.png" hotimage="user_manager_hov.png" pushedimage="user_manager_pre.png" padding="58,0,0,0"/>
+					<HorizontalLayout width="49" />
+					<Button name="btn_mMore" width="48" height="48" normalimage="user_more_nor.png" hotimage="user_more_hov.png" pushedimage="user_more_pre.png" />
+				</HorizontalLayout>	
+				<HorizontalLayout height="35" bkcolor="#FFFFFFFF" visible="false">
+					<Label width="50" text="微信群发" padding="58,0,0,0" bkcolor="#FFFFFFFF"/>
+					<HorizontalLayout width="40" bkcolor="#FFFFFFFF"/>
+					<Label width="60" text="线索加量包" bkcolor="#FFFFFFFF" />
+				</HorizontalLayout>
+				<HorizontalLayout height="29" bkcolor="#FFFFFFFF" />
+				<Label name="lbl_time" height="16" text="" align="center" textcolor="#FF999999" font="0" padding="14,0,14,0" endellipsis="true" />
+				<HorizontalLayout height="5" bkcolor="#FFFFFFFF" visible="false" />
+				<HorizontalLayout height="1" bkcolor="#FFF0F0F0" width="234" padding="14,0,0,0" />
+				<HorizontalLayout height="20" bkcolor="#FFFFFFFF" />
+				<HorizontalLayout height="20" bkcolor="#FFFFFFFF" >
+					<Label height="20" width="140" font="1" text="1、想获取更多寻车线索？" padding="14,0,0,0" textcolor="#FF666666"/>
+					<Button name="btn_openauth" width="80" height="20" font="1" align="left" text="授权平台账号" textcolor="#FF217cff" hottextcolor="#FF0E57FF"  />
+				</HorizontalLayout>
+				<HorizontalLayout height="5" bkcolor="#FFFFFFFF"/>
+				<HorizontalLayout height="20" bkcolor="#FFFFFFFF">
+					<Label height="20" width="126" font="1" text="2、无用寻车消息太多？" padding="14,0,0,0" textcolor="#FF666666"/>
+					<Button name="btn_opensetting" width="90" height="20" font="1" align="left" text="设置品牌和地区" textcolor="#FF217cff" hottextcolor="#FF0E57FF" />
+				</HorizontalLayout>
+				<HorizontalLayout height="5" bkcolor="#FFFFFFFF"/>
+				<Label height="20" font="1" text="3、软件没法用？给我电话：17376554350" padding="14,0,0,0" textcolor="#FF666666"/>
+				<HorizontalLayout height="10" bkcolor="#FFFFFFFF" />
+			</VerticalLayout>
+			<VerticalLayout comment="TB4用户信息展示页" bkcolor="#FFFFFFFF">
+				<HorizontalLayout height="20" bkcolor="#FFFFFFFF"/>
+				<HorizontalLayout name="hly_logoinfo" height="50" bkcolor="#FFFFFFFF" padding="14,0,14,0" comment="用户logo,id展示模块">  
+					<Button name="btn_userlogo" width="50" height="50" bkimage="default_logo.png" bkcolor="#FFF4F5F6"/>
+					<HorizontalLayout width="8" bkcolor="#FFFFFFFF"/>
+					<VerticalLayout bkcolor="#FFFFFFFF">
+						<HorizontalLayout height="4" bkcolor="#FFFFFFFF"/>
+						<Label name="lbl_nickname" height="18" font="1" text="" textcolor="#FF333333" endellipsis="true" />
+						<HorizontalLayout height="8" bkcolor="#FFFFFFFF"/>
+						<HorizontalLayout bkcolor="#FFFFFFFF" height="16">
+							<Label width="35" height="16" font="1" text="微信:" textcolor="#FFAAAAAA"/>
+							<Label name="lbl_idarea" height="16" font="1" text="" textcolor="#FFAAAAAA" endellipsis="true"/>
+						</HorizontalLayout>
+					</VerticalLayout>
+				</HorizontalLayout>
+				<TabLayout name="tab_userinfo" selectedid="1" comment="Tab容器" bkcolor="#FFFFFFFF">
+					<VerticalLayout comment="TB1是否是客户选择页" bkcolor="#FFFFFFFF" padding="14,0,14,0">
+						<HorizontalLayout height="80" bkcolor="#FFFFFFFF"/>
+						<Label height="20" font="2" text="该好友是否为您的合作车商？" align="center" bkcolor="#FFFFFFFF"/>
+						<HorizontalLayout height="25" bkcolor="#FFFFFFFF"/>
+						<Button name="btn_mycustom" text="是合作车商" width="160" height="40" normalimage="file='cancel_nor.png' corner='2,2,2,2'" hotimage="file='cancel_hovpre.png' corner='2,2,2,2'" pushedimage="file='cancle_hovpre.png' corner='2,2,2,2'" bkcolor="#FFFFFFFF" font="1" textcolor="#FF1E76FF" disabledtextcolor="#FFFFFFFF" align="center" padding="40,0,0,0" />
+						<HorizontalLayout height="20" bkcolor="#FFFFFFFF"/>
+						<Button name="btn_nomycustom" text="不是合作车商" width="160" height="40" normalimage="file='cancel_nor.png' corner='2,2,2,2'" hotimage="file='cancel_hovpre.png' corner='2,2,2,2'" pushedimage="file='cancle_hovpre.png' corner='2,2,2,2'" font="1" bkcolor="#FFFFFFFF" textcolor="#FF1E76FF" disabledtextcolor="#FFFFFFFF" align="center" padding="40,0,0,0" />
+					</VerticalLayout>
+					<VerticalLayout comment="TB2客户基本信息、标签页" bkcolor="#FFFFFFFF" >
+						<HorizontalLayout height="20" bkcolor="#FFFFFFFF"/>
+						<HorizontalLayout height="24" bkcolor="#FFFFFFFF" padding="14,0,14,0">
+							<Label height="24" width="60" font="1" text="基础信息" bkcolor="#FFFFFFFF"/>
+							<HorizontalLayout>
+							</HorizontalLayout>
+							<Button name="btn_modify" width="40" height="24" font="1" text="编辑" normalimage="file='edit_nor.png' dest='0,7,10,17'" hotimage="file='edit_hovpre.png' dest='0,7,10,17'" textpadding="12,0,0,0" textcolor="#FF217CFF" hottextcolor="#FF0E57FF" bkcolor="#FFFFFFFF"/>
+							<Button name="btn_modify_save" text="保存" width="52" height="24" visible="false" textpadding="17,0,0,0" normalimage="file='save_hov.png' corner='20,2,2,2'" hotimage="file='save_hov.png' corner='20,2,2,2'" pushedimage="file='save_pre.png' corner='20,2,2,2'" font="1" textcolor="#FFFFFFFF" disabledtextcolor="#FFFFFFFF" />
+						</HorizontalLayout>
+						<HorizontalLayout height="10" bkcolor="#FFFFFFFF"/>
+						<HorizontalLayout height="20" bkcolor="#FFFFFFFF" padding="14,0,14,0">
+							<Label height="20" width="35" font="1" text="姓名" textcolor="#FFAAAAAA" bkcolor="#FFFFFFFF"/>
+							<Edit name="edt_myname" width="190" height="20" text="" bordersize="1" bordercolor="#FFEEEEEE" readonly="true" font="1" textpadding="3,2,3,2" textcolor="#FF666666" bkcolor="#FFFFFFFF" />
+						</HorizontalLayout>
+						<HorizontalLayout height="16" bkcolor="#FFFFFFFF">
+							<Label height="16" name="lbl_errortipname" font="0" text="该字段不允许为空！" bkimage="file='error_logo.png' dest='0,2,12,14'" textcolor="#FFFF2121" bkcolor="#FFFFFFFF" padding="50,0,14,0" textpadding="15,0,0,0"/>
+						</HorizontalLayout>
+						<HorizontalLayout height="20" bkcolor="#FFFFFFFF" padding="14,0,14,0">
+							<Label height="20" width="35" font="1" text="手机" textcolor="#FFAAAAAA" bkcolor="#FFFFFFFF"/>
+							<Edit name="edt_myphonenum" width="190" height="20" text="" bordersize="1" bordercolor="#FFEEEEEE" readonly="true" font="1" textpadding="3,2,3,2" textcolor="#FF666666" bkcolor="#FFFFFFFF" />
+						</HorizontalLayout>
+						<HorizontalLayout height="16" bkcolor="#FFFFFFFF">
+							<Label height="16" name="lbl_errortipphone" font="0" text="请输入正确的手机号码！" bkimage="file='error_logo.png' dest='0,2,12,14'" textcolor="#FFFF2121" bkcolor="#FFFFFFFF" padding="50,0,14,0" textpadding="15,0,0,0"/>
+						</HorizontalLayout>
+						<HorizontalLayout height="20" bkcolor="#FFFFFFFF" padding="14,0,14,0">
+							<Label height="20" width="35" font="1" text="公司" textcolor="#FFAAAAAA" bkcolor="#FFFFFFFF"/>
+							<Edit name="edt_mycompary" width="190" height="20" text="" bordersize="1" bordercolor="#FFEEEEEE" readonly="true" font="1" textpadding="3,2,3,2" textcolor="#FF666666" bkcolor="#FFFFFFFF" />
+						</HorizontalLayout>
+						<HorizontalLayout height="16" bkcolor="#FFFFFFFF">
+							<Label name="lbl_errortipcompany" font="0" height="16" text="该字段不允许为空！" bkimage="file='error_logo.png' dest='0,2,12,14'" textcolor="#FFFF2121" bkcolor="#FFFFFFFF" padding="50,0,14,0" textpadding="15,0,0,0"/>
+						</HorizontalLayout>
+						<HorizontalLayout height="30" bkcolor="#FFFFFFFF" padding="14,0,14,0">
+							<Label name="lbl_tag" text="标签" height="20" width="35" font="1" padding="0,6,0,0" textcolor="#FFAAAAAA" bkcolor="#FFFFFFFF"/>
+							<HorizontalLayout name="hly_tag" childpadding="4" height="30" bkcolor="#FFFFFFFF">
+								<Button name="btn_addflag" text="添加标签分类" width="100" height="26" font="1" bordercolor="#FFEEEEEE" bordersize="1" bkimage="file='tag_add.png' dest='5,8,15,18'" textpadding="12,0,0,0" padding="0,5,0,0" textcolor="#FFC4C5C6" hottextcolor="#FF0E57FF" bkcolor="#FFF4F5F6"/>
+							</HorizontalLayout>
+						</HorizontalLayout>
+						<HorizontalLayout height="16" bkcolor="#FFFFFFFF"/>
+						<HorizontalLayout height="10" bkcolor="#FFF4F5F6"/>
+						<HorizontalLayout height="16" bkcolor="#FFFFFFFF"/>
+						<HorizontalLayout height="24" bkcolor="#FFFFFFFF" padding="14,0,14,0">
+							<Label height="20" width="60" font="1" text="交易记录" textcolor="#FF333333" bkcolor="#FFFFFFFF"/>
+							<HorizontalLayout>
+							</HorizontalLayout>
+							<Button name="btn_startrecord" width="40" height="24" font="1" text="添加" normalimage="file='edit_nor.png' dest='0,7,10,17'" hotimage="file='edit_hovpre.png' dest='0,7,10,17'" textpadding="12,0,0,0" textcolor="#FF217CFF" hottextcolor="#FF0E57FF" bkcolor="#FFFFFFFF"/>
+							<Button name="btn_cancelrecord" text="取消" width="52" height="24" visible="false" font="1" borderround="1,1" normalimage="file='cancel_nor.png' corner='2,2,2,2'" hotimage="file='cancel_hovpre.png' corner='2,2,2,2'" pushedimage="file='cancle_hovpre.png' corner='2,2,2,2'" font="1" textcolor="#FF217CFF" hottextcolor="#FF217CFF" disabledtextcolor="#FFFFFFFF" />
+							<HorizontalLayout width="10" bkcolor="#FFFFFFFF" />
+							<Button name="btn_saverecord" text="保存" width="52" height="24" visible="false" textpadding="17,0,0,0" normalimage="file='save_hov.png' corner='20,2,2,2'" hotimage="file='save_hov.png' corner='20,2,2,2'" pushedimage="file='save_pre.png' corner='20,2,2,2'" font="1" textcolor="#FFFFFFFF" disabledtextcolor="#FFFFFFFF" />
+						</HorizontalLayout>
+						<HorizontalLayout height="10" bkcolor="#FFFFFFFF"/>
+						<!--VerticalLayout name="vly_recordempty" bkcolor="#FFFFFFFF">
+							<Label width="194" height="111" font="13" bkimage="recordempty.png" padding="24,0,0,0" bkcolor="#FFFFFFFF"/>
+							<HorizontalLayout height="5" bkcolor="#FFFFFFFF"/>
+							<Label height="16" font="0" text="永久记录和每个人的交易细节，换微信也不会丢失" align="center" endellipsis="true" bkcolor="#FFFFFFFF"/>
+							<HorizontalLayout height="5" bkcolor="#FFFFFFFF"/>
+						</VerticalLayout-->
+						<VerticalLayout name="vly_record" bkcolor="#FFFFFFFF" padding="14,0,14,0">
+							<VerticalLayout name="vly_edt" bkcolor="#FFFFFFFF">
+								<Label name="lbl_curtime" height="20" width="120" font="0" text="" bkimage="file='dot_record.png' source='0,0,5,5' dest='0,7,5,12'" textpadding="13,0,0,0" bkcolor="#FFFFFFFF"/>
+								<HorizontalLayout height="5" />
+								<Edit name="edt_record" width="230" height="23" bordersize="1" bordercolor="#FFdedede" font="1" textpadding="3,2,3,2" textcolor="#c0c0c0" bkcolor="#FFFFFFFF" />
+								<HorizontalLayout height="5" />
+								<Option name="opt_image" width="72" height="72" font="0" text="拖拽截图至此" textpadding="0,25,0,0" bkimage="drag_bk.png" bkcolor="#FFF4F5F6" />
+							</VerticalLayout>
+							<List name="record_list" bkcolor="#FFFFFFFF" itemaltbk="false" itembkcolor="#FFFFFFFF" itemlinecolor="#FFEDF0F2" header="hidden" itemendellipsis="true" itemselectedbkcolor="#FFDDEDFC" itemhotbkcolor="#FFF4F7FA" itemdisabledtextcolor="#FFCCCCCC" itemdisabledbkcolor="#FFFFFFFF" vscrollbar="true" >
+							</List>
+						</VerticalLayout>
+						<HorizontalLayout height="10" bkcolor="#FFFFFFFF"/>
+					</VerticalLayout>
+					<VerticalLayout comment="TB3非客户提示页" bkcolor="#FFFFFFFF">
+						<HorizontalLayout height="162" bkcolor="#FFFFFFFF" />
+						<Button name="btn_change" height="20" font="1" text="重新标记" textcolor="#FF217CFF" align="center"/>
+					</VerticalLayout>
+					<VerticalLayout comment="TB4初始默认页" bkcolor="#FFFFFFFF" padding="14,0,14,0">
+						<HorizontalLayout bkcolor="#FFFFFFFF">
+						</HorizontalLayout>
+						<Label height="20" font="1" text="请选择您的好友" align="center" textcolor="#FFAAAAAA"/>
+						<Label height="20" font="1" text="目前系统只支持好友管理" align="center" textcolor="#FFAAAAAA" />
+						<HorizontalLayout height="248" bkcolor="#FFFFFFFF"/>
+					</VerticalLayout>
+				</TabLayout>
+			</VerticalLayout>
+		</TabLayout>
+    </VerticalLayout>
+</Window>
