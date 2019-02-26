@@ -12,7 +12,6 @@ public:
 	CSimpleCefApp(CMainFrame* pMainFrame,HWND hwnd = NULL);
 	virtual ~CSimpleCefApp(void);
 	void SetMainFrame(CMainFrame* pMainFrame);
-	//void UploadFileApp();
 	//CefApp methods
 	virtual CefRefPtr<CefBrowserProcessHandler> GetBrowserProcessHandler() override;
 	virtual CefRefPtr<CefRenderProcessHandler> GetRenderProcessHandler() override;

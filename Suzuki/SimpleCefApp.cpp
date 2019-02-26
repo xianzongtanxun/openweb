@@ -294,13 +294,6 @@ void CSimpleCefApp::OnWebKitInitialized()
 
 }
 
-//void CSimpleCefApp::UploadFileApp()
-//{
-//	if (v8Handler_){
-//		v8Handler_->UploadFile();
-//	}
-//}
-
 void CSimpleCefApp::OnContextCreated(CefRefPtr<CefBrowser> browser, CefRefPtr<CefFrame> frame, CefRefPtr<CefV8Context> context)
 {
 	OutputDebugString(_T("ClientAppRenderer::OnContextCreated, create window binding\r\n"));

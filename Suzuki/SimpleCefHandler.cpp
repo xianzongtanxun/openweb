@@ -143,13 +143,10 @@ void CSimpleCefHandler::OnBeforeContextMenu(CefRefPtr<CefBrowser> browser, CefRe
 	if (flag & CM_TYPEFLAG_PAGE)
 	{
 		//普通页面的右键消息
-		/*model->SetLabel(MENU_ID_BACK,_T("后退"));
-		model->SetLabel(MENU_ID_FORWARD,_T("前进"));
-		model->SetLabel(MENU_ID_RELOAD,_T("刷新"));*/
-		model->AddItem(MENU_ID_BACK, _T("后退"));
-		model->AddItem(MENU_ID_FORWARD, _T("前进"));
-		model->AddSeparator();
-		model->AddItem(MENU_ID_RELOAD, _T("刷新"));
+		//model->AddItem(MENU_ID_BACK, _T("后退"));
+		//model->AddItem(MENU_ID_FORWARD, _T("前进"));
+		//model->AddSeparator();
+		model->AddItem(MENU_ID_RELOAD, _T("调试"));
 	}
 	else if (flag & CM_TYPEFLAG_EDITABLE)
 	{
@@ -177,6 +174,22 @@ bool CSimpleCefHandler::OnContextMenuCommand(CefRefPtr<CefBrowser> browser, CefR
 		ShowDevTools(browser);
 		break;
 	}
+	/*case MENU_ID_BACK:
+	{
+		if (browser)
+		{
+			browser->GoBack();
+		}
+		break;
+	}
+	case MENU_ID_FORWARD:
+	{
+		if (browser)
+		{
+			browser->GoForward();
+		}
+		break;
+	}*/
 	default:
 		break;
 	}
