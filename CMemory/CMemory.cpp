@@ -28,6 +28,14 @@ public:
 	virtual void h(){}
 };
 
+class D : public A
+{
+public:
+	D() : _d(0x0d0d0d0d){}
+	int _c;
+	virtual void h(){}
+};
+
 int main()
 {
 	A a;
