@@ -36,6 +36,15 @@ public:
 	virtual void h(){}
 };
 //这是测试文本
+
+class E : public A
+{
+public:
+	E() : _e(1){}
+	int _e;
+	virtual void h(){}
+};
+
 int main()
 {
 	A a;
