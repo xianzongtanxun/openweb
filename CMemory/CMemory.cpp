@@ -41,6 +41,7 @@ public:
 //这是测试文本4
 //这是测试文本5
 //这是测试文本6
+//这是测试文本7
 class E : public A
 {
 public:
