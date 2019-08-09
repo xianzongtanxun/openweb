@@ -35,7 +35,7 @@ public:
 	int _c;
 	virtual void h(){}
 };
-
+//这是测试文本
 int main()
 {
 	A a;
