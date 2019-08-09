@@ -36,6 +36,17 @@ public:
 	virtual void h(){}
 };
 
+<<<<<<< HEAD
+=======
+class E : public A
+{
+public:
+	E() : _e(1){}
+	int _e;
+	virtual void h(){}
+};
+
+>>>>>>> master
 int main()
 {
 	A a;
