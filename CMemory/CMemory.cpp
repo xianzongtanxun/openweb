@@ -36,8 +36,6 @@ public:
 	virtual void h(){}
 };
 
-<<<<<<< HEAD
-=======
 class E : public A
 {
 public:
@@ -46,7 +44,6 @@ public:
 	virtual void h(){}
 };
 
->>>>>>> master
 int main()
 {
 	A a;
