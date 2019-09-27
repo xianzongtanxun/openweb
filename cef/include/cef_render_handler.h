@@ -38,19 +38,17 @@
 #define CEF_INCLUDE_CEF_RENDER_HANDLER_H_
 #pragma once
 
-#include <vector>
-
-#include "include/cef_accessibility_handler.h"
 #include "include/cef_base.h"
 #include "include/cef_browser.h"
 #include "include/cef_drag_data.h"
+#include <vector>
 
 ///
 // Implement this interface to handle events when window rendering is disabled.
 // The methods of this class will be called on the UI thread.
 ///
 /*--cef(source=client)--*/
-class CefRenderHandler : public virtual CefBaseRefCounted {
+class CefRenderHandler : public virtual CefBase {
  public:
   typedef cef_cursor_type_t CursorType;
   typedef cef_drag_operations_mask_t DragOperation;
@@ -59,29 +57,19 @@ class CefRenderHandler : public virtual CefBaseRefCounted {
   typedef std::vector<CefRect> RectList;
 
   ///
-  // Return the handler for accessibility notifications. If no handler is
-  // provided the default implementation will be used.
-  ///
-  /*--cef()--*/
-  virtual CefRefPtr<CefAccessibilityHandler> GetAccessibilityHandler() {
-    return NULL;
-  }
-
-  ///
   // Called to retrieve the root window rectangle in screen coordinates. Return
   // true if the rectangle was provided.
   ///
   /*--cef()--*/
-  virtual bool GetRootScreenRect(CefRefPtr<CefBrowser> browser, CefRect& rect) {
-    return false;
-  }
+  virtual bool GetRootScreenRect(CefRefPtr<CefBrowser> browser,
+                                 CefRect& rect) { return false; }
 
   ///
   // Called to retrieve the view rectangle which is relative to screen
   // coordinates. Return true if the rectangle was provided.
   ///
   /*--cef()--*/
-  virtual bool GetViewRect(CefRefPtr<CefBrowser> browser, CefRect& rect) = 0;
+  virtual bool GetViewRect(CefRefPtr<CefBrowser> browser, CefRect& rect) =0;
 
   ///
   // Called to retrieve the translation from view coordinates to actual screen
@@ -92,9 +80,7 @@ class CefRenderHandler : public virtual CefBaseRefCounted {
                               int viewX,
                               int viewY,
                               int& screenX,
-                              int& screenY) {
-    return false;
-  }
+                              int& screenY) { return false; }
 
   ///
   // Called to allow the client to fill in the CefScreenInfo object with
@@ -107,24 +93,23 @@ class CefRenderHandler : public virtual CefBaseRefCounted {
   ///
   /*--cef()--*/
   virtual bool GetScreenInfo(CefRefPtr<CefBrowser> browser,
-                             CefScreenInfo& screen_info) {
-    return false;
-  }
+                             CefScreenInfo& screen_info) { return false; }
 
   ///
   // Called when the browser wants to show or hide the popup widget. The popup
   // should be shown if |show| is true and hidden if |show| is false.
   ///
   /*--cef()--*/
-  virtual void OnPopupShow(CefRefPtr<CefBrowser> browser, bool show) {}
+  virtual void OnPopupShow(CefRefPtr<CefBrowser> browser,
+                           bool show) {}
 
   ///
   // Called when the browser wants to move or resize the popup widget. |rect|
   // contains the new location and size in view coordinates.
   ///
   /*--cef()--*/
-  virtual void OnPopupSize(CefRefPtr<CefBrowser> browser, const CefRect& rect) {
-  }
+  virtual void OnPopupSize(CefRefPtr<CefBrowser> browser,
+                           const CefRect& rect) {}
 
   ///
   // Called when an element should be painted. Pixel values passed to this
@@ -141,8 +126,7 @@ class CefRenderHandler : public virtual CefBaseRefCounted {
                        PaintElementType type,
                        const RectList& dirtyRects,
                        const void* buffer,
-                       int width,
-                       int height) = 0;
+                       int width, int height) =0;
 
   ///
   // Called when the browser's cursor has changed. If |type| is CT_CUSTOM then
@@ -173,10 +157,7 @@ class CefRenderHandler : public virtual CefBaseRefCounted {
   virtual bool StartDragging(CefRefPtr<CefBrowser> browser,
                              CefRefPtr<CefDragData> drag_data,
                              DragOperationsMask allowed_ops,
-                             int x,
-                             int y) {
-    return false;
-  }
+                             int x, int y) { return false; }
 
   ///
   // Called when the web view wants to update the mouse cursor during a
@@ -194,16 +175,6 @@ class CefRenderHandler : public virtual CefBaseRefCounted {
   virtual void OnScrollOffsetChanged(CefRefPtr<CefBrowser> browser,
                                      double x,
                                      double y) {}
-
-  ///
-  // Called when the IME composition range has changed. |selected_range| is the
-  // range of characters that have been selected. |character_bounds| is the
-  // bounds of each character in view coordinates.
-  ///
-  /*--cef()--*/
-  virtual void OnImeCompositionRangeChanged(CefRefPtr<CefBrowser> browser,
-                                            const CefRange& selected_range,
-                                            const RectList& character_bounds) {}
 };
 
 #endif  // CEF_INCLUDE_CEF_RENDER_HANDLER_H_

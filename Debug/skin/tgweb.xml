@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Window size="1024,720" caption="0,0,0,40" roundcorner="4,4" sizebox="2,2,2,2" >
+	<Include source="default_config.xml" />
+	<Include source="control_config.xml" />
+	<VerticalLayout name="frame" bkcolor="#FFFFFFFF">
+		<HorizontalLayout name="hly_title" comment="标题栏" height="36" bkcolor="#FFF4F5F6">
+			<HorizontalLayout width="14"/>
+			<Label name="lbl_title" width="260" align="left" text="天谷浏览器" textcolor="#FF999999" font="1"/>
+			<HorizontalLayout>
+			</HorizontalLayout>
+			<Button name="btnmin" width="30" tooltip="点击最小化" normalimage="min_nor.png" hotimage="min_hovpre.png" pushedimage="min_hovpre.png" visible="true"/>
+			<Button name="btnclose" width="30" tooltip="点击隐藏" normalimage="close_nor.png" hotimage="close_hovpre.png" pushedimage="close_hovpre.png" />
+			<HorizontalLayout width="3" bkcolor="#FFFFFFFF"/>
+		</HorizontalLayout>
+		<VerticalLayout height="3" bkcolor="#FFFFFFFF"/>
+		<Container name="container" bkcolor="#FFFFFFFF">
+		</Container>
+		<VerticalLayout height="5" bkcolor="#FFFFFFFF"/>
+	</VerticalLayout>
+</Window>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<Window size="1024,720" caption="0,0,0,0" roundcorner="4,4" sizebox="2,2,2,2" >
+<Window size="1024,720" caption="0,0,0,36" roundcorner="4,4" sizebox="2,2,2,2" >
 	<Include source="default_config.xml" />
 	<Include source="control_config.xml" />
 	<VerticalLayout name="frame" bkcolor="#FFFFFFFF">

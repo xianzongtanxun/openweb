@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Window size="1024,830" caption="0,0,0,36" roundcorner="4,4" sizebox="2,2,2,2">
+	<Include source="default_config.xml" />
+	<Include source="control_config.xml" />
+	<VerticalLayout name="frame" bkcolor="#FFFFFFFF">
+		<HorizontalLayout name="hly_title" comment="标题栏" height="36" bkcolor="#FFF4F5F6" >
+			<HorizontalLayout width="14"/>
+			<Label name="lbl_title" width="300" align="left" text="CefFrameTitle" textcolor="#FF999999" font="2"/>
+			<HorizontalLayout>
+			</HorizontalLayout>
+			<Button name="btnrestore" width="30" tooltip="点击还原" normalimage="min_nor.png" hotimage="min_hovpre.png" pushedimage="min_hovpre.png" visible="false"/>
+			<Button name="btnmax" width="30" tooltip="点击最大化" normalimage="min_nor.png" hotimage="min_hovpre.png" pushedimage="min_hovpre.png" visible="false"/>
+			<Button name="btnclose" width="30" tooltip="点击隐藏" normalimage="close_nor.png" hotimage="close_hovpre.png" pushedimage="close_hovpre.png" />
+			<HorizontalLayout width="3" bkcolor="#FFFFFFFF"/>
+		</HorizontalLayout>
+		<VerticalLayout height="3" bkcolor="#FFFFFFFF"/>
+		<!--HorizontalLayout height="28" bkcolor="#FFFFFFFF">
+			<VerticalLayout width="5"/>
+			<!--Button name="btn_backup" text="后退" width="48" height="24" normalimage="login_nor.png" hotimage="login_hov.png" pushedimage="login_pre.png" font="1" textcolor="#FFFFFFFF" disabledtextcolor="#FFFFFFFF" /-->
+			<!--VerticalLayout width="5" bkcolor="#FFFFFFFF" />
+			<!--Button name="btn_forword" text="前进" width="48" height="24" normalimage="login_nor.png" hotimage="login_hov.png" pushedimage="login_pre.png" font="1" textcolor="#FFFFFFFF" disabledtextcolor="#FFFFFFFF" /-->
+			<!--VerticalLayout width="5" bkcolor="#FFFFFFFF" />
+			<Button name="btn_go" text="转到" width="48" height="24" normalimage="login_nor.png" hotimage="login_hov.png" pushedimage="login_pre.png" font="1" textcolor="#FFFFFFFF" disabledtextcolor="#FFFFFFFF" />
+			<VerticalLayout width="5" bkcolor="#FFFFFFFF" />
+			<Edit name="edt_path" bordervisible="true" bordersize="1" bordercolor="#FF0095e5" height="26" textcolor="#FF333333" bkcolor="#FFFFFFFF" vscrollbar="false" readonly="false" enabled="true" padding="24,0,0,0"/>
+			<HorizontalLayout width="20" /-->
+		<!--/HorizontalLayout-->
+		<Container name="container" bkcolor="#FFFFFFFF">
+		</Container>
+		<VerticalLayout height="20" bkcolor="#FFFFFFFF"/>
+	</VerticalLayout>
+</Window>

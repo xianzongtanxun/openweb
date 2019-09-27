@@ -74,17 +74,17 @@
 // This can happen in cases where Chromium code is used directly by the
 // client application. When using Chromium code directly always include
 // the Chromium header first to avoid type conflicts.
-#elif defined(USING_CHROMIUM_INCLUDES)
+#elif defined(BUILDING_CEF_SHARED)
 // When building CEF include the Chromium header directly.
 #include "base/cancelable_callback.h"
-#else  // !USING_CHROMIUM_INCLUDES
+#else  // !BUILDING_CEF_SHARED
 // The following is substantially similar to the Chromium implementation.
 // If the Chromium implementation diverges the below implementation should be
 // updated to match.
 
 #include "include/base/cef_bind.h"
-#include "include/base/cef_build.h"
 #include "include/base/cef_callback.h"
+#include "include/base/cef_build.h"
 #include "include/base/cef_logging.h"
 #include "include/base/cef_macros.h"
 #include "include/base/cef_weak_ptr.h"
@@ -102,7 +102,8 @@ class CancelableCallback<void(void)> {
 
   // |callback| must not be null.
   explicit CancelableCallback(const base::Callback<void(void)>& callback)
-      : weak_factory_(this), callback_(callback) {
+      : weak_factory_(this),
+        callback_(callback) {
     DCHECK(!callback.is_null());
     InitializeForwarder();
   }
@@ -117,7 +118,9 @@ class CancelableCallback<void(void)> {
   }
 
   // Returns true if the wrapped callback has been cancelled.
-  bool IsCancelled() const { return callback_.is_null(); }
+  bool IsCancelled() const {
+    return callback_.is_null();
+  }
 
   // Sets |callback| as the closure that may be cancelled. |callback| may not
   // be null. Outstanding and any previously wrapped callbacks are cancelled.
@@ -134,10 +137,14 @@ class CancelableCallback<void(void)> {
   }
 
   // Returns a callback that can be disabled by calling Cancel().
-  const base::Callback<void(void)>& callback() const { return forwarder_; }
+  const base::Callback<void(void)>& callback() const {
+    return forwarder_;
+  }
 
  private:
-  void Forward() { callback_.Run(); }
+  void Forward() {
+    callback_.Run();
+  }
 
   // Helper method to bind |forwarder_| using a weak pointer from
   // |weak_factory_|.
@@ -147,7 +154,7 @@ class CancelableCallback<void(void)> {
   }
 
   // Used to ensure Forward() is not run when this object is destroyed.
-  base::WeakPtrFactory<CancelableCallback<void(void)>> weak_factory_;
+  base::WeakPtrFactory<CancelableCallback<void(void)> > weak_factory_;
 
   // The wrapper closure.
   base::Callback<void(void)> forwarder_;
@@ -165,7 +172,8 @@ class CancelableCallback<void(A1)> {
 
   // |callback| must not be null.
   explicit CancelableCallback(const base::Callback<void(A1)>& callback)
-      : weak_factory_(this), callback_(callback) {
+      : weak_factory_(this),
+        callback_(callback) {
     DCHECK(!callback.is_null());
     InitializeForwarder();
   }
@@ -180,7 +188,9 @@ class CancelableCallback<void(A1)> {
   }
 
   // Returns true if the wrapped callback has been cancelled.
-  bool IsCancelled() const { return callback_.is_null(); }
+  bool IsCancelled() const {
+    return callback_.is_null();
+  }
 
   // Sets |callback| as the closure that may be cancelled. |callback| may not
   // be null. Outstanding and any previously wrapped callbacks are cancelled.
@@ -197,10 +207,14 @@ class CancelableCallback<void(A1)> {
   }
 
   // Returns a callback that can be disabled by calling Cancel().
-  const base::Callback<void(A1)>& callback() const { return forwarder_; }
+  const base::Callback<void(A1)>& callback() const {
+    return forwarder_;
+  }
 
  private:
-  void Forward(A1 a1) const { callback_.Run(a1); }
+  void Forward(A1 a1) const {
+    callback_.Run(a1);
+  }
 
   // Helper method to bind |forwarder_| using a weak pointer from
   // |weak_factory_|.
@@ -210,7 +224,7 @@ class CancelableCallback<void(A1)> {
   }
 
   // Used to ensure Forward() is not run when this object is destroyed.
-  base::WeakPtrFactory<CancelableCallback<void(A1)>> weak_factory_;
+  base::WeakPtrFactory<CancelableCallback<void(A1)> > weak_factory_;
 
   // The wrapper closure.
   base::Callback<void(A1)> forwarder_;
@@ -228,7 +242,8 @@ class CancelableCallback<void(A1, A2)> {
 
   // |callback| must not be null.
   explicit CancelableCallback(const base::Callback<void(A1, A2)>& callback)
-      : weak_factory_(this), callback_(callback) {
+      : weak_factory_(this),
+        callback_(callback) {
     DCHECK(!callback.is_null());
     InitializeForwarder();
   }
@@ -243,7 +258,9 @@ class CancelableCallback<void(A1, A2)> {
   }
 
   // Returns true if the wrapped callback has been cancelled.
-  bool IsCancelled() const { return callback_.is_null(); }
+  bool IsCancelled() const {
+    return callback_.is_null();
+  }
 
   // Sets |callback| as the closure that may be cancelled. |callback| may not
   // be null. Outstanding and any previously wrapped callbacks are cancelled.
@@ -260,10 +277,14 @@ class CancelableCallback<void(A1, A2)> {
   }
 
   // Returns a callback that can be disabled by calling Cancel().
-  const base::Callback<void(A1, A2)>& callback() const { return forwarder_; }
+  const base::Callback<void(A1, A2)>& callback() const {
+    return forwarder_;
+  }
 
  private:
-  void Forward(A1 a1, A2 a2) const { callback_.Run(a1, a2); }
+  void Forward(A1 a1, A2 a2) const {
+    callback_.Run(a1, a2);
+  }
 
   // Helper method to bind |forwarder_| using a weak pointer from
   // |weak_factory_|.
@@ -273,7 +294,7 @@ class CancelableCallback<void(A1, A2)> {
   }
 
   // Used to ensure Forward() is not run when this object is destroyed.
-  base::WeakPtrFactory<CancelableCallback<void(A1, A2)>> weak_factory_;
+  base::WeakPtrFactory<CancelableCallback<void(A1, A2)> > weak_factory_;
 
   // The wrapper closure.
   base::Callback<void(A1, A2)> forwarder_;
@@ -288,6 +309,6 @@ typedef CancelableCallback<void(void)> CancelableClosure;
 
 }  // namespace base
 
-#endif  // !USING_CHROMIUM_INCLUDES
+#endif  // !BUILDING_CEF_SHARED
 
 #endif  // CEF_INCLUDE_BASE_CEF_CANCELABLE_CALLBACK_H_

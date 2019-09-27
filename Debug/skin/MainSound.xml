@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Window size="640,660" sizebox="4,4,6,6" mininfo="499,46" caption="0,0,0,40" roundcorner="4,4">
+	<Include source="default_config.xml" />
+	<Include source="control_config.xml" />
+	<VerticalLayout name="frame" bkcolor="#FFFFFFFF">
+		<VerticalLayout height="36" comment="标题栏" bkcolor="#FFF4F5F6">
+			<HorizontalLayout name="hly_title" height="36" bkcolor="#FFF4F5F6">
+				<HorizontalLayout width="14"/>
+				<HorizontalLayout>
+				</HorizontalLayout>
+				<Button name="minbtn" width="30" height="36" tooltip="点击最小化" normalimage="min_nor.png" hotimage="min_hovpre.png" pushedimage="min_hovpre.png"/>
+				<Button name="closebtn" width="30" height="36" tooltip="点击隐藏" normalimage="close_nor.png" hotimage="close_hovpre.png" pushedimage="close_hovpre.png"/>
+			</HorizontalLayout>
+		</VerticalLayout>
+		<VerticalLayout height="5" bkcolor="#FFFFFFFF" />
+		<HorizontalLayout height="28" bkcolor="#FFFFFFFF">
+			<Button name="btn_backup" text="后退" width="48" height="24" normalimage="login_nor.png" hotimage="login_hov.png" pushedimage="login_pre.png" font="1" textcolor="#FFFFFFFF" disabledtextcolor="#FFFFFFFF" />
+			<VerticalLayout width="5" bkcolor="#FFFFFFFF" />
+			<Button name="btn_forword" text="前进" width="48" height="24" normalimage="login_nor.png" hotimage="login_hov.png" pushedimage="login_pre.png" font="1" textcolor="#FFFFFFFF" disabledtextcolor="#FFFFFFFF" />
+			<VerticalLayout width="5" bkcolor="#FFFFFFFF" />
+			<Button name="btn_go" text="开始" width="48" height="24" normalimage="login_nor.png" hotimage="login_hov.png" pushedimage="login_pre.png" font="1" textcolor="#FFFFFFFF" disabledtextcolor="#FFFFFFFF" />
+			<VerticalLayout width="5" bkcolor="#FFFFFFFF" />
+			<Edit name="edt_path" width="450" bordervisible="true" bordersize="1" bordercolor="#FF0095e5" height="26" textcolor="#FF333333" bkcolor="#FFFFFFFF" vscrollbar="false" readonly="false" enabled="true" padding="24,0,0,0"/>
+		</HorizontalLayout>
+		<VerticalLayout name="vly_frame" bkcolor="#FFFF00FF" height="480" >
+		</VerticalLayout>
+		<VerticalLayout>
+		</VerticalLayout>
+		<VerticalLayout height="20" bkcolor="#FFFFFF00"/>
+	</VerticalLayout>
+</Window>

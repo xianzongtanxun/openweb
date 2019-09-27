@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<DefaultConfig>
+	<!--注释: 垂直进度条  -->
+  <Default name="VScrollBar" value="thumbnormalimage=&quot;file='scrollbar5.png' source='0,0,5,20' corner='2,2,2,2'&quot; thumbhotimage=&quot;file='scrollbar5.png' source='5,0,10,20' corner='2,2,2,2'&quot; thumbpushedimage=&quot;file='scrollbar5.png' source='10,0,15,20' corner='2,2,2,2'&quot; showbutton1=&quot;false&quot; showbutton2=&quot;false&quot; width=&quot;6&quot;" />
+  <Default name="HScrollBar" value="thumbnormalimage=&quot;file='scrollbar5.png' source='0,0,5,20' corner='2,2,2,2'&quot; thumbhotimage=&quot;file='scrollbar5.png' source='5,0,10,20' corner='2,2,2,2'&quot; thumbpushedimage=&quot;file='scrollbar5.png' source='10,0,15,20' corner='2,2,2,2'&quot; showbutton1=&quot;false&quot; showbutton2=&quot;false&quot; height=&quot;6&quot;" />
+	<!--注释: 字体  -->
+	<Font id="0"  name="微软雅黑" size="10" bold="false" italic="false" />
+	<Font id="1"  name="微软雅黑" size="12" bold="false" italic="false" default="true" />
+	<Font id="2"  name="微软雅黑" size="12" bold="true" italic="false" />
+	<Font id="3"  name="微软雅黑" size="12" bold="false" italic="false" underline="true" />
+	<Font id="4"  name="微软雅黑" size="14" bold="false" italic="false" />
+	<Font id="5"  name="微软雅黑" size="14" bold="true" italic="false" />  
+	<Font id="6"  name="微软雅黑" size="15" bold="false" italic="false" />
+	<Font id="7"  name="微软雅黑" size="16" bold="false" italic="false" />
+	<Font id="8"  name="微软雅黑" size="16" bold="true" italic="false" />	
+	<Font id="9"  name="微软雅黑" size="16" bold="true" italic="false" underline="true"/>
+	<Font id="10" name="微软雅黑" size="18" bold="false" italic="false" />
+	<Font id="11" name="微软雅黑" size="18" bold="true" italic="false" />
+	<Font id="12" name="微软雅黑" size="19" bold="false" italic="false" />
+	<Font id="13" name="微软雅黑" size="20" bold="false" italic="false" />
+	<Font id="14" name="微软雅黑" size="22" bold="false" italic="false" />
+	<Font id="15" name="微软雅黑" size="24" bold="false" italic="false" />
+	<Font id="16" name="微软雅黑" size="26" bold="false" italic="false" />
+	<Font id="17" name="微软雅黑" size="28" bold="false" italic="false" />
+	<Font id="18" name="微软雅黑" size="28" bold="false" italic="false" />
+	<Font id="19" name="微软雅黑" size="30" bold="false" italic="false" />
+</DefaultConfig>
+

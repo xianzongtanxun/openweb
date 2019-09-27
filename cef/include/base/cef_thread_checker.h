@@ -37,10 +37,10 @@
 // This can happen in cases where Chromium code is used directly by the
 // client application. When using Chromium code directly always include
 // the Chromium header first to avoid type conflicts.
-#elif defined(USING_CHROMIUM_INCLUDES)
+#elif defined(BUILDING_CEF_SHARED)
 // When building CEF include the Chromium header directly.
 #include "base/threading/thread_checker.h"
-#else  // !USING_CHROMIUM_INCLUDES
+#else  // !BUILDING_CEF_SHARED
 // The following is substantially similar to the Chromium implementation.
 // If the Chromium implementation diverges the below implementation should be
 // updated to match.
@@ -58,6 +58,7 @@
 #define ENABLE_THREAD_CHECKER 0
 #endif
 
+
 namespace base {
 
 namespace cef_internal {
@@ -68,7 +69,9 @@ namespace cef_internal {
 // right version for your build configuration.
 class ThreadCheckerDoNothing {
  public:
-  bool CalledOnValidThread() const { return true; }
+  bool CalledOnValidThread() const {
+    return true;
+  }
 
   void DetachFromThread() {}
 };
@@ -107,15 +110,17 @@ class ThreadCheckerDoNothing {
 //
 // In Release mode, CalledOnValidThread will always return true.
 #if ENABLE_THREAD_CHECKER
-class ThreadChecker : public cef_internal::ThreadCheckerImpl {};
+class ThreadChecker : public cef_internal::ThreadCheckerImpl {
+};
 #else
-class ThreadChecker : public cef_internal::ThreadCheckerDoNothing {};
+class ThreadChecker : public cef_internal::ThreadCheckerDoNothing {
+};
 #endif  // ENABLE_THREAD_CHECKER
 
 #undef ENABLE_THREAD_CHECKER
 
 }  // namespace base
 
-#endif  // !USING_CHROMIUM_INCLUDES
+#endif  // !BUILDING_CEF_SHARED
 
 #endif  // CEF_INCLUDE_BASE_THREAD_CHECKER_H_
