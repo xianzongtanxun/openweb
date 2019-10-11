@@ -13,6 +13,17 @@
 			<HorizontalLayout width="3" bkcolor="#FFFFFFFF"/>
 		</HorizontalLayout>
 		<VerticalLayout height="3" bkcolor="#FFFFFFFF"/>
+		<HorizontalLayout height="28" bkcolor="#FFFFFFFF">
+			<VerticalLayout width="5"/>
+			<Button name="btn_backup" text="后退" width="48" height="24" normalimage="login_nor.png" hotimage="login_hov.png" pushedimage="login_pre.png" font="1" textcolor="#FFFFFFFF" disabledtextcolor="#FFFFFFFF" />
+			<VerticalLayout width="5" bkcolor="#FFFFFFFF" />
+			<Button name="btn_forword" text="前进" width="48" height="24" normalimage="login_nor.png" hotimage="login_hov.png" pushedimage="login_pre.png" font="1" textcolor="#FFFFFFFF" disabledtextcolor="#FFFFFFFF" />
+			<VerticalLayout width="5" bkcolor="#FFFFFFFF" />
+			<Button name="btn_go" text="转到" width="48" height="24" normalimage="login_nor.png" hotimage="login_hov.png" pushedimage="login_pre.png" font="1" textcolor="#FFFFFFFF" disabledtextcolor="#FFFFFFFF" />
+			<VerticalLayout width="5" bkcolor="#FFFFFFFF" />
+			<Edit name="edt_path" bordervisible="true" bordersize="1" bordercolor="#FF0095e5" height="26" textcolor="#FF333333" bkcolor="#FFFFFFFF" vscrollbar="false" readonly="false" enabled="true" padding="24,0,0,0"/>
+			<HorizontalLayout width="20" />
+		</HorizontalLayout>
 		<Container name="container" bkcolor="#FFFFFFFF">
 		</Container>
 		<VerticalLayout height="5" bkcolor="#FFFFFFFF"/>

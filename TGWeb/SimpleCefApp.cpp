@@ -42,22 +42,6 @@ CefRefPtr<CefRenderProcessHandler> CSimpleCefApp::GetRenderProcessHandler()
 void CSimpleCefApp::OnContextInitialized()
 {
 	Sleep(0);
-	//CefWindowInfo windows_info;
-	//RECT rc;
-	//::GetClientRect(m_hwnd,&rc);
-	//windows_info.SetAsChild(m_hwnd,rc);
-	////windows_info.SetAsPopup(NULL, _T("FrameCef"));
-	//CefRefPtr<CDuiMsgHandler> handler(new CDuiMsgHandler());
-	//CefBrowserSettings browser_settings;
-	//browser_settings.default_encoding.str = _T("GB2312");
-	//browser_settings.default_encoding.length = wcslen(_T("GB2312"));
-	//std::string url;
-	//CefRefPtr<CefCommandLine> command_line = CefCommandLine::GetGlobalCommandLine();
-	//url = command_line->GetSwitchValue("url");
-	//if (url.empty()){
-	//	url = "http://www.baidu.com";
-	//}
-	//CefBrowserHost::CreateBrowser(windows_info,handler.get(),url,browser_settings,NULL);
 }
 
 void CSimpleCefApp::OnBeforeCommandLineProcessing(const CefString& process_type, CefRefPtr<CefCommandLine> command_line)

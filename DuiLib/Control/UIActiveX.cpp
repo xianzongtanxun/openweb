@@ -616,6 +616,13 @@ STDMETHODIMP CActiveXCtrl::GetWindowContext(IOleInPlaceFrame** ppFrame, IOleInPl
 		::GetClientRect(m_pWindow->GetHWND(),lprcPosRect);
 		::GetClientRect(m_pWindow->GetHWND(),lprcClipRect);
 	}
+	else
+	{
+		//fix 当窗体为空的时候赋值位置
+		RECT rcItem = m_pOwner->GetPos();
+		memcpy(lprcPosRect, &rcItem, sizeof(rcItem));
+		memcpy(lprcClipRect, &rcItem, sizeof(rcItem));
+	}
     *ppFrame = new CActiveXFrameWnd(m_pOwner);
     *ppDoc = NULL;
     ACCEL ac = { 0 };

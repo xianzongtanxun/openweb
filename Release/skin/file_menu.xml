@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Window size="140,140" bktrans="true">
+    <Font size="12" bold="false" italic="false" default="true" />
+    <VerticalLayout bkcolor="0xffffffff" inset="3,3,3,3" bordersize="1" bordercolor="0xffafafaf">
+        <List name="pkg_menu" header="hidden" bkcolor="#FFFFFFFF" textcolor="#FF484848" itemhotbkcolor="#FF51A8F1" itemselectedimage="file='main_left_navigation.png' source='0,70,178,140'" itemdisabledimage="file='main_left_navigation.png' source='0,0,178,35'" >
+			<TrayListElement height="35" name="file_menu_open" traytexthotcolor="0xFFFFFFFF" traytext="打开文件" traydisabledcolor="#FFB9B9B9"
+			traynormalimage="file='toolicon\setting.png' source='0,0,16,16' dest='10,10,26,26'" trayhotimage="file='toolicon\setting.png' source='16,0,32,16' dest='10,10,26,26'" traytextpadding="36,10,0,10"/>
+			<TrayListElement height="35" name="file_menu_save" traytexthotcolor="0xFFFFFFFF" traytext="保存文件" traynormalimage="file='toolicon\tray_menu.png' source='0,240,16,256' dest='10,10,26,26'" trayhotimage="file='toolicon\tray_menu.png' source='0,256,16,272' dest='10,10,26,26'" traytextpadding="36,10,0,10"/>
+			<TrayListElement height="35" name="file_menu_saveas" traytexthotcolor="0xFFFFFFFF" traytext="另存为" traynormalimage="file='toolicon\tray_menu.png' source='0,240,16,256' dest='10,10,26,26'" trayhotimage="file='toolicon\tray_menu.png' source='0,256,16,272' dest='10,10,26,26'" traytextpadding="36,10,0,10"/>
+			<TrayListElement height="35" name="file_menu_print" traytexthotcolor="0xFFFFFFFF" traytext="打印"  traynormalimage="file='toolicon\tray_menu.png' source='0,272,16,288' dest='10,10,26,26'" trayhotimage="file='toolicon\tray_menu.png' source='0,288,16,304' dest='10,10,26,26'" traytextpadding="36,10,0,10"/>
+        </List>
+    </VerticalLayout>
+</Window>

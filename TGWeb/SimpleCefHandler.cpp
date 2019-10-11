@@ -63,9 +63,11 @@ void CSimpleCefHandler::OnTitleChange(CefRefPtr<CefBrowser> browser, const CefSt
 {
 	CEF_REQUIRE_UI_THREAD();
 	CefWindowHandle hwnd = browser->GetHost()->GetWindowHandle();
+	wstring strUrl = browser->GetMainFrame()->GetURL();
 	SetWindowText(hwnd,title.c_str());
 	if (m_pMainFrame){
 		m_pMainFrame->SetCaption(title.c_str());
+		m_pMainFrame->SetCurrentUrl(strUrl);
 	}
 }
 

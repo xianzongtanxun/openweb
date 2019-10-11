@@ -3,6 +3,7 @@
 
 class CSimpleCefApp;
 class CCookieVisitor;
+class CFileMenuDlg;
 class CMainFrame :public DuiLib::WindowImplBase
 {
 public:
@@ -12,7 +13,9 @@ public:
 	HWND Create(HWND hwndParent, LPCTSTR pstrName);
 	static HWND g_HWnd;
 	void SetCaption(wstring sCaption);
+	void SetCurrentUrl(wstring sCaption);
 	void SetWebCookies(std::wstring domain, std::wstring key, std::wstring sValue);
+	void OpenLocalPdfFile();
 private:
 	DuiLib::CDuiString GetSkinFile();
     void InitWindow();
@@ -30,10 +33,25 @@ private:
 	ShadowHelp m_ShaowHelp;
 	CButtonUI *m_pBtnMin;
 	CButtonUI* m_pBtnClose;
+	CButtonUI*  m_pBtnBackUp;
+	CButtonUI*	m_pBtnForward;
+	CButtonUI*	m_pBtnGo;
+	CButtonUI*  m_pBtnTitleFile;
+
+	CButtonUI*  m_pBtnHost;
+	CButtonUI*	m_pBtnHelp;
+	CButtonUI*	m_pBtnMenuFile;
+	CButtonUI*	m_pBtnMenuView;
+	CButtonUI*	m_pBtnMenuSign;
+	CButtonUI*	m_pBtnMenuCheck;
+
+	CEditUI*    m_edtUrl;
 	CLabelUI*  m_pLblTitle;
 	std::string m_pInitUrl;//初始化url地址
 	std::string m_pInitParam;//初始化参数
 	CContainerUI* m_pContainer;
+	CActiveXUI* m_pActiveUI;
+	CWebBrowserUI* m_pBrowserUI;
 	CSimpleCefHandler* m_handler;
 	std::mutex m_mutex;
 	CefRefPtr<CCookieVisitor> m_CookieVisitor;
@@ -43,5 +61,6 @@ private:
 	int	m_width;
 	int	m_height;
 	bool	m_bShowMin;
+	CFileMenuDlg* m_pFileMenuDlg;
 };
 

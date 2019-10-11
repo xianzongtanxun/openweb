@@ -1,4 +1,5 @@
 #pragma once
+#include "stdafx.h"
 #include "CCookieVistor.h"
 
 bool CCookieVisitor::Visit(const CefCookie& cookie, int count, int total, bool&deleteCookie)

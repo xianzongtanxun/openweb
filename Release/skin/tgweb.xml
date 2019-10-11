@@ -8,11 +8,34 @@
 			<Label name="lbl_title" width="260" align="left" text="天谷浏览器" textcolor="#FF999999" font="1"/>
 			<HorizontalLayout>
 			</HorizontalLayout>
+			<Button name="btn_backup" borderround="2,2" text="后退" width="48" height="24" normalimage="login_nor.png" hotimage="login_hov.png" pushedimage="login_pre.png" font="1" textcolor="#FFFFFFFF" disabledtextcolor="#FFFFFFFF" padding="0,6,0,0"/>
+			<VerticalLayout width="5" />
+			<Button name="btn_forword" borderround="2,2" text="前进" width="48" height="24" normalimage="login_nor.png" hotimage="login_hov.png" pushedimage="login_pre.png" font="1" textcolor="#FFFFFFFF" disabledtextcolor="#FFFFFFFF" padding="0,6,0,0"/>
+			<VerticalLayout width="5" />
+			<Button name="btn_go" borderround="2,2" text="转到" width="48" height="24" normalimage="login_nor.png" hotimage="login_hov.png" pushedimage="login_pre.png" font="1" textcolor="#FFFFFFFF" disabledtextcolor="#FFFFFFFF" padding="0,6,0,0"/>
+			<VerticalLayout width="5" />
 			<Button name="btnmin" width="30" tooltip="点击最小化" normalimage="min_nor.png" hotimage="min_hovpre.png" pushedimage="min_hovpre.png" visible="true"/>
 			<Button name="btnclose" width="30" tooltip="点击隐藏" normalimage="close_nor.png" hotimage="close_hovpre.png" pushedimage="close_hovpre.png" />
 			<HorizontalLayout width="3" bkcolor="#FFFFFFFF"/>
 		</HorizontalLayout>
 		<VerticalLayout height="3" bkcolor="#FFFFFFFF"/>
+		<HorizontalLayout height="36" bkcolor="#FFF4F5F6">
+			<VerticalLayout width="14" />
+			<Button name="btn_menufile" borderround="2,2" text="文件菜单" width="60" height="24" normalimage="login_nor.png" hotimage="login_hov.png" pushedimage="login_pre.png" font="1" textcolor="#FFFFFFFF" disabledtextcolor="#FFFFFFFF" />
+			<VerticalLayout width="5" />
+			<Button name="btn_host" borderround="2,2" text="主页" width="48" height="24" normalimage="login_nor.png" hotimage="login_hov.png" pushedimage="login_pre.png" font="1" textcolor="#FFFFFFFF" disabledtextcolor="#FFFFFFFF" />
+			<VerticalLayout width="5" />
+			<Button name="btn_menuview" borderround="2,2" text="视图菜单" width="60" height="24" normalimage="login_nor.png" hotimage="login_hov.png" pushedimage="login_pre.png" font="1" textcolor="#FFFFFFFF" disabledtextcolor="#FFFFFFFF" />
+			<VerticalLayout width="5" />
+			<Button name="btn_menusign" borderround="2,2" text="签章菜单" width="60" height="24" normalimage="login_nor.png" hotimage="login_hov.png" pushedimage="login_pre.png" font="1" textcolor="#FFFFFFFF" disabledtextcolor="#FFFFFFFF" />
+			<VerticalLayout width="5" />
+			<Button name="btn_menucheck" borderround="2,2" text="验签菜单" width="60" height="24" normalimage="login_nor.png" hotimage="login_hov.png" pushedimage="login_pre.png" font="1" textcolor="#FFFFFFFF" disabledtextcolor="#FFFFFFFF" />
+			<VerticalLayout width="5" />
+			<Button name="btn_help" borderround="2,2" text="帮助" width="48" height="24" normalimage="login_nor.png" hotimage="login_hov.png" pushedimage="login_pre.png" font="1" textcolor="#FFFFFFFF" disabledtextcolor="#FFFFFFFF" tooltip="打开网页链接或者打开本地文件"/>
+			<VerticalLayout width="5" />
+			<Edit name="edt_path" bordervisible="true" bordersize="1" bordercolor="#FF0095e5" height="26" textcolor="#FF333333" bkcolor="#FFFFFFFF" vscrollbar="false" readonly="false" enabled="true" padding="14,0,0,0"/>
+			<VerticalLayout width="2" />
+		</HorizontalLayout>
 		<Container name="container" bkcolor="#FFFFFFFF">
 		</Container>
 		<VerticalLayout height="5" bkcolor="#FFFFFFFF"/>

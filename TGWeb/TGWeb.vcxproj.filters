@@ -54,6 +54,12 @@
     <ClInclude Include="CCookieVistor.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="ui_list_element.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="ui_file_menu_dlg.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -87,6 +93,12 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="CCookieVistor.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="ui_list_element.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="ui_file_menu_dlg.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

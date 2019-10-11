@@ -57,6 +57,7 @@ int APIENTRY _tWinMain(_In_ HINSTANCE hInstance,
 	LocalFree(argv);
 
 	::CoInitialize(NULL);
+	::OleInitialize(NULL);
 	void* sandbox_info = NULL;
 #if defined(CEF_USE_SANDBOX)
 	// Manage the life span of the sandbox information object. This is necessary
@@ -86,7 +87,7 @@ int APIENTRY _tWinMain(_In_ HINSTANCE hInstance,
 	USES_CONVERSION;
 	CMainFrame* pMain = new CMainFrame(W2A(strParam1.c_str()), W2A(strParam2.c_str()));
 	HWND hwnd = pMain->Create(NULL, _T("TGBrowser"));
-	app->SetMainFrame(pMain);
+	//app->SetMainFrame(pMain);
 	ShowWindow(hwnd, SW_HIDE);
 	SendMessage(hwnd, WM_MSG_SHOW, 0, 0);
 
@@ -94,5 +95,6 @@ int APIENTRY _tWinMain(_In_ HINSTANCE hInstance,
 	CPaintManagerUI::Term();
 	CefShutdown();
 	::CoUninitialize();
+	::OleUninitialize();
 	return 0;
 }

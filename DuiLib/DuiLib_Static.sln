@@ -1,0 +1,38 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.40629.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DuiLib_Static", "DuiLib_Static.vcxproj", "{4E6CD856-849F-4964-9D71-5B036BCE1EC6}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TGWeb", "..\TGWeb\TGWeb.vcxproj", "{D3950C1B-F44B-4998-884F-E6C599FF4A06}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+		UnicodeDebug|Win32 = UnicodeDebug|Win32
+		UnicodeRelease|Win32 = UnicodeRelease|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4E6CD856-849F-4964-9D71-5B036BCE1EC6}.Debug|Win32.ActiveCfg = Debug|Win32
+		{4E6CD856-849F-4964-9D71-5B036BCE1EC6}.Debug|Win32.Build.0 = Debug|Win32
+		{4E6CD856-849F-4964-9D71-5B036BCE1EC6}.Release|Win32.ActiveCfg = Release|Win32
+		{4E6CD856-849F-4964-9D71-5B036BCE1EC6}.Release|Win32.Build.0 = Release|Win32
+		{4E6CD856-849F-4964-9D71-5B036BCE1EC6}.UnicodeDebug|Win32.ActiveCfg = UnicodeDebug|Win32
+		{4E6CD856-849F-4964-9D71-5B036BCE1EC6}.UnicodeDebug|Win32.Build.0 = UnicodeDebug|Win32
+		{4E6CD856-849F-4964-9D71-5B036BCE1EC6}.UnicodeRelease|Win32.ActiveCfg = UnicodeRelease|Win32
+		{4E6CD856-849F-4964-9D71-5B036BCE1EC6}.UnicodeRelease|Win32.Build.0 = UnicodeRelease|Win32
+		{D3950C1B-F44B-4998-884F-E6C599FF4A06}.Debug|Win32.ActiveCfg = Debug|Win32
+		{D3950C1B-F44B-4998-884F-E6C599FF4A06}.Debug|Win32.Build.0 = Debug|Win32
+		{D3950C1B-F44B-4998-884F-E6C599FF4A06}.Release|Win32.ActiveCfg = Release|Win32
+		{D3950C1B-F44B-4998-884F-E6C599FF4A06}.Release|Win32.Build.0 = Release|Win32
+		{D3950C1B-F44B-4998-884F-E6C599FF4A06}.UnicodeDebug|Win32.ActiveCfg = Debug|Win32
+		{D3950C1B-F44B-4998-884F-E6C599FF4A06}.UnicodeDebug|Win32.Build.0 = Debug|Win32
+		{D3950C1B-F44B-4998-884F-E6C599FF4A06}.UnicodeRelease|Win32.ActiveCfg = Release|Win32
+		{D3950C1B-F44B-4998-884F-E6C599FF4A06}.UnicodeRelease|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

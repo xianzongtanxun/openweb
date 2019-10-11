@@ -30,7 +30,8 @@
 #include <algorithm>
 #include <wininet.h>
 #include <shellapi.h>
-
+#include <thread>
+#include <commdlg.h>
 #include "../Duilib/UIlib.h"
 #include "json/json.h"
 using namespace std;

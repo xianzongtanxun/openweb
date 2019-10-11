@@ -1,8 +1,10 @@
 #include "stdafx.h"
-#include <commdlg.h>
 #include <shellapi.h>
 #include <WinUser.h>
 #include <thread>
+//#include <comutil.h>
+//comsuppw.lib
+#include <comdef.h>
 #include "MainFrame.h"
 #include "Utils\UIDelegate.h"
 #include "include\cef_app.h"
@@ -11,11 +13,24 @@
 #include "CCefRequestContextHandlerEx.h"
 #include "include/base/cef_bind_helpers.h"
 #include "CCookieVistor.h"
+#include "ui_file_menu_dlg.h"
 ///////////////////////////
 CMainFrame::CMainFrame(const string& sInitUrl, const string& sInitParam) :
 	m_pLblTitle(nullptr),   
 	m_pBtnMin(nullptr),
+	m_edtUrl(nullptr),
 	m_pBtnClose(nullptr),
+	m_pBtnBackUp(nullptr),
+	m_pBtnForward(nullptr),
+	m_pBtnGo(nullptr),
+	m_pBtnTitleFile(nullptr),
+	m_pBtnHost(nullptr),
+	m_pBtnHelp(nullptr),
+	m_pBtnMenuFile(nullptr),
+	m_pBtnMenuView(nullptr),
+	m_pBtnMenuSign(nullptr),
+	m_pBtnMenuCheck(nullptr),
+	m_pFileMenuDlg(nullptr),
 	m_sInitUrl(sInitUrl),
 	m_pInitParam(sInitParam),
 	m_width(0),
@@ -37,13 +52,34 @@ void CMainFrame::InitWindow()
 	m_pBtnMin     = static_cast<CButtonUI*>(m_PaintManager.FindControl(_T("btnmin")));
 	m_pBtnClose   = static_cast<CButtonUI*>(m_PaintManager.FindControl(_T("btnclose")));
 	m_pContainer  = static_cast<CContainerUI*>(m_PaintManager.FindControl(_T("container")));
-	//支持文件拖拽功能
+	m_edtUrl      = static_cast<CEditUI*>(m_PaintManager.FindControl(_T("edt_path")));
+	m_pBtnBackUp  = static_cast<CButtonUI*>(m_PaintManager.FindControl(_T("btn_backup")));
+	m_pBtnForward = static_cast<CButtonUI*>(m_PaintManager.FindControl(_T("btn_forword")));
+	m_pBtnGo      = static_cast<CButtonUI*>(m_PaintManager.FindControl(_T("btn_go")));
+	m_pBtnTitleFile      = static_cast<CButtonUI*>(m_PaintManager.FindControl(_T("btn_menu")));
 
+	m_pBtnHost      = static_cast<CButtonUI*>(m_PaintManager.FindControl(_T("btn_host")));
+	m_pBtnHelp      = static_cast<CButtonUI*>(m_PaintManager.FindControl(_T("btn_help")));
+	m_pBtnMenuFile  = static_cast<CButtonUI*>(m_PaintManager.FindControl(_T("btn_menufile")));
+	m_pBtnMenuView  = static_cast<CButtonUI*>(m_PaintManager.FindControl(_T("btn_menuview")));
+	m_pBtnMenuSign  = static_cast<CButtonUI*>(m_PaintManager.FindControl(_T("btn_menusign")));
+	m_pBtnMenuCheck = static_cast<CButtonUI*>(m_PaintManager.FindControl(_T("btn_menucheck")));
+
+	ASSERT(m_edtUrl);
 	ASSERT(m_pLblTitle);
 	ASSERT(m_pBtnMin);
 	ASSERT(m_pBtnClose);
 	ASSERT(m_pContainer);
-
+	ASSERT(m_pBtnBackUp);
+	ASSERT(m_pBtnForward);
+	ASSERT(m_pBtnGo);
+	ASSERT(m_pBtnTitleFile);
+	ASSERT(m_pBtnHost);
+	ASSERT(m_pBtnHelp);
+	ASSERT(m_pBtnMenuFile);
+	ASSERT(m_pBtnMenuView);
+	ASSERT(m_pBtnMenuSign);
+	ASSERT(m_pBtnMenuCheck);
 	string strJsonData = m_pInitParam;
 	bool succeed = false;
 	Json::CharReaderBuilder reader_b;
@@ -65,13 +101,10 @@ void CMainFrame::InitWindow()
 		//m_pBtnMin->SetVisible(m_bShowMin);
 	}
 	::DragAcceptFiles(GetHWND(),true);
-	//SetWindowPos(GetHWND(), HWND_TOPMOST, 0, 0, m_width, m_height, SWP_NOMOVE | SWP_NOSIZE);
 }
 
 HWND CMainFrame::Create(HWND hwndParent, LPCTSTR pstrName)
 {
-	//UI_WNDSTYLE_DIALOG
-	//UI_WNDSTYLE_DIALOG | WS_MAXIMIZEBOX
 	HWND hwnd = __super::Create(hwndParent, pstrName, UI_WNDSTYLE_DIALOG/* & ~WS_MAXIMIZEBOX*/, WS_EX_WINDOWEDGE, 0, 0, 0, 0);
 	m_ShaowHelp.Init(hwnd);
 	return hwnd;
@@ -81,6 +114,14 @@ void CMainFrame::SetCaption(wstring sCaption)
 {
 	if (m_pLblTitle){
 		m_pLblTitle->SetText(sCaption.c_str());
+	}
+}
+
+void CMainFrame::SetCurrentUrl(wstring sCaption)
+{
+	if (m_edtUrl)
+	{
+		m_edtUrl->SetText(sCaption.c_str());
 	}
 }
 
@@ -225,14 +266,14 @@ LRESULT CMainFrame::HandleMessage(UINT uMsg, WPARAM wParam, LPARAM lParam)
 			m_handler = new CSimpleCefHandler(this);
 			CefBrowserSettings browser_settings;
 			std::string url = "http://testfront.tsign.cn:8870/oauth/show?redirectUri=https://localhost:7688/TGRedirect&responseType=code&appId=3876544261&scope=get_user_info,op_seal&state=1&flowId=1&platformAccountId=8ac8019401a5454fb1ea7e01aa0e81e8&platformOrgId=7efb35cf060c407190fa8554a0858743&platformIdCardNum=43021919800312105X";
-			//url = m_sInitUrl;
+			url = m_sInitUrl;
 			//url = "https://www.baidu.com/";
 			
 			//最大化
 			CefWindowInfo windows_info;
 			RECT rc;
 			::GetClientRect(GetHWND(), &rc);
-			rc.top = rc.top + 36;
+			rc.top = rc.top + 36 + 40;
 			windows_info.SetAsChild(GetHWND(), rc);
 			CefRequestContextSettings recoSetting;
 
@@ -247,19 +288,7 @@ LRESULT CMainFrame::HandleMessage(UINT uMsg, WPARAM wParam, LPARAM lParam)
 			CefString(&recoSetting.cache_path).FromWString(strCookiePath);
 			handlerCookies = new CCefRequestContextHandlerEx();
 			CefRefPtr<CefRequestContext> cefReCo = CefRequestContext::CreateContext(recoSetting, handlerCookies);
-			
-			/*CefRefPtr<CefCookieManager> manager = handlerCookies->GetCookieManager();
-			CefCookie cookie;
-			
-			CefString(&cookie.domain).FromWString(Domain.c_str());
-			CefString(&cookie.path).FromWString(_T("\\CefCookie"));
-			std::wstring httpDomain = _T("http://");
-			httpDomain.append(Domain);
-			manager->SetCookie(httpDomain, cookie, NULL);*/
-			//std::wstring Domain = _T("testfront.tsign.cn:8870");
-			//std::wstring sKey = _T("username");
-			//std::wstring sValue = _T("xidada");
-			//SetWebCookies(Domain, sKey, sValue);
+
 			bool bRet = CefBrowserHost::CreateBrowser(windows_info, m_handler, url, browser_settings, cefReCo);
 			int k = 0;
 		}
@@ -269,6 +298,18 @@ LRESULT CMainFrame::HandleMessage(UINT uMsg, WPARAM wParam, LPARAM lParam)
 			m_ShaowHelp.ReFlush(GetHWND());
 		}
 		break;
+	case WM_DROPFILES:
+	{
+		//拖拽消息
+		LPTSTR pFilePathName = (LPTSTR)malloc(500);
+		HDROP hDropInfo = (HDROP)wParam;
+		::DragQueryFile(hDropInfo, 0, pFilePathName, 500);
+		m_edtUrl->SetText(pFilePathName);
+		m_handler->GetBrowser()->GetMainFrame()->LoadURL(pFilePathName);
+		::DragFinish(hDropInfo);
+		free(pFilePathName);
+	}
+	break;
 	case WM_SIZE:
 		{
 			return OnSize(uMsg, wParam, lParam, bHandled);
@@ -303,50 +344,34 @@ void CMainFrame::SetWebCookies(std::wstring domain, std::wstring key, std::wstri
 	std::thread th(&CefCookieManager::SetCookie, manager.get(),httpDomain.c_str(), cookie, callback);
 	th.detach();
 }
-//LRESULT CMainFrame::OnSize(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled)
-//{
-//	bHandled = true;
-//	return true;
-//	if (!m_handler){
-//		return false;
-//	}
-//	RECT rc;
-//	::GetClientRect(GetHWND(), &rc);
-//	m_pBtnClose->SetFloat(true);
-//	rc.bottom = rc.top + 36;
-//	rc.left = rc.right - 30;
-//	m_pBtnClose->SetPos(rc);
-//	if (::IsZoomed(GetHWND())){
-//		//m_pBtnMax->SetVisible(false);
-//		//m_pBtnRestore->SetVisible(true);
-//		//m_pBtnRestore->SetFloat(true);
-//		rc.left = rc.left - 30;
-//		rc.right = rc.left + 30;
-//		//m_pBtnRestore->SetPos(rc);
-//	}
-//	else{
-//		//m_pBtnMax->SetVisible(true);
-//		//m_pBtnRestore->SetVisible(false);
-//		//m_pBtnMax->SetFloat(true);
-//		rc.left = rc.left - 30;
-//		rc.right = rc.left + 30;
-//		//m_pBtnMax->SetPos(rc);
-//	}
-//	
-//	CefRefPtr<CefBrowser> browser = m_handler->GetBrowser();
-//	if (browser.get())
-//	{
-//		HWND hwnd_ = browser->GetHost()->GetWindowHandle();
-//		if (hwnd_)
-//		{
-//			RECT rcCef;
-//			::GetClientRect(GetHWND(), &rcCef);
-//			rcCef.top = rcCef.top + 80;
-//			::MoveWindow(hwnd_, rcCef.left, rcCef.top, rcCef.right - rcCef.left, rcCef.bottom - rcCef.top, TRUE);
-//		}
-//	}
-//	return true;
-//}
+
+void CMainFrame::OpenLocalPdfFile()
+{
+	OPENFILENAME ofn;
+	TCHAR szFile[MAX_PATH] = _T("");
+
+	ZeroMemory(&ofn, sizeof(ofn));
+	ofn.lStructSize = sizeof(ofn);
+	ofn.hwndOwner = *this;
+	ofn.lpstrFile = szFile;
+	ofn.nMaxFile = sizeof(szFile);
+	ofn.lpstrFilter = _T(".pdf");
+	ofn.nFilterIndex = 1;
+	ofn.lpstrFileTitle = NULL;
+	ofn.nMaxFileTitle = 0;
+	ofn.lpstrInitialDir = NULL;
+	ofn.Flags = OFN_EXPLORER | OFN_PATHMUSTEXIST | OFN_FILEMUSTEXIST;
+
+	if (GetOpenFileName(&ofn))
+	{
+		if (m_handler)
+		{
+			CDuiString strUrl = _T("https://localhost:7688/index.html/?file=");
+			strUrl.Append(ofn.lpstrFile);
+			m_handler->GetBrowser()->GetMainFrame()->LoadURL(strUrl.GetData());
+		}
+	}
+}
 
 void CMainFrame::Notify(TNotifyUI& msg)
 {
@@ -364,37 +389,100 @@ void CMainFrame::Notify(TNotifyUI& msg)
 		}
 		else if (msg.pSender == m_pBtnMin)
 		{
-			//CefRefPtr<CefCookieManager> cefCookieManager = CefCookieManager::GetGlobalManager(NULL);
-			//if (cefCookieManager)
-			//{
-				//std::wstring httpDomain = _T("http://testfront.tsign.cn:8870/oauth/show?redirectUri=https://localhost:7688/TGRedirect&responseType=code&appId=3876544261&scope=get_user_info,op_seal&state=1&flowId=1&platformAccountId=8ac8019401a5454fb1ea7e01aa0e81e8&platformOrgId=7efb35cf060c407190fa8554a0858743&platformIdCardNum=43021919800312105X");
-				CefCookie cookie;
-				//std::wstring Domain = _T("testfront.tsign.cn:8870");
-				//std::wstring sKey = _T("username");
-				//std::wstring sValue = _T("xidada");
-				//SetWebCookies(Domain, sKey, sValue);
-				//CefString(&cookie.name).FromWString(sKey.c_str());
-				//CefString(&cookie.value).FromWString(sValue.c_str());
-				//CefString(&cookie.domain).FromWString(Domain.c_str());
-				//CefString(&cookie.path).FromWString(_T("\\CefCookie"));
-				//cookie.has_expires = true;
-				//std::wstring httpDomain = _T("http://");
-				//httpDomain.append(Domain);
-				//std::thread th(&CefCookieManager::SetCookie, cefCookieManager.get(), httpDomain.c_str(), cookie, NULL);
-				//th.detach();
-				//std::wstring httpDomain = _T("htp://testfront.tsign.cn:8870");
-				//bool bDelete = false;
-				//m_CookieVisitor = new CCookieVisitor();
-				//handlerCookies->GetCookieManager()->VisitAllCookies(m_CookieVisitor);
-				//handlerCookies->GetCookieManager()->VisitUrlCookies(httpDomain, true, m_CookieVisitor);
-				//int k = 0;
-				//if (m_CookieVisitor)
-				//{
-				//	m_CookieVisitor->Visit(cookie, 1, 2, bDelete);
-				//}
-			//}
 			SendMessage(WM_SYSCOMMAND, SC_MINIMIZE, 0);
 			return;
+		}
+		else if (msg.pSender == m_pBtnBackUp)
+		{
+			if (m_handler->GetBrowser()->CanGoBack())
+			{
+				m_handler->GetBrowser()->GoBack();
+			}
+		}
+		else if (msg.pSender == m_pBtnForward)
+		{
+			if (m_handler->GetBrowser()->CanGoForward())
+			{
+				m_handler->GetBrowser()->GoForward();
+			}
+		}
+		else if (msg.pSender == m_pBtnGo)
+		{
+			if (m_edtUrl && m_handler)
+			{
+				CDuiString strEditUrl = m_edtUrl->GetText();
+				if (!strEditUrl.IsEmpty())
+				{
+					m_handler->GetBrowser()->GetMainFrame()->LoadURL(strEditUrl.GetData());
+				}
+			}
+		}
+		else if (msg.pSender == m_pBtnTitleFile)
+		{
+			std::thread th(&CMainFrame::OpenLocalPdfFile, this);
+			th.detach();
+		}
+		else if (msg.pSender == m_pBtnHost)
+		{
+			if (m_handler)
+			{
+				CDuiString strUrl = _T("https://www.hao123.com/");
+				m_handler->GetBrowser()->GetMainFrame()->LoadURL(strUrl.GetData());
+			}
+		}
+		else if (msg.pSender == m_pBtnHelp)
+		{
+			//打开页面或者网页
+			//帮助.docx
+			char buffer[MAX_PATH] = { 0 };
+			ULONG name_size = ::GetModuleFileNameA(NULL, buffer, MAX_PATH);
+			if (name_size == 0) {
+				return;
+			}
+			::PathRemoveFileSpecA(buffer);
+			string sFilePath = buffer;
+			sFilePath.append("\\帮助.docx");
+			::ShellExecuteA(NULL, "open", sFilePath.c_str(), NULL, NULL, SW_SHOWNORMAL);
+		}
+		else if (msg.pSender == m_pBtnMenuFile)
+		{
+			//if (!m_pFileMenuDlg)
+			//{
+				m_pFileMenuDlg = new CFileMenuDlg(this);
+				m_pFileMenuDlg->Create(GetHWND());
+			//}
+			RECT rc = m_pBtnMenuFile->GetPos();
+			rc.top += 24;
+			POINT pt = { 0 };
+			::GetCursorPos(&pt);
+			m_pFileMenuDlg->AdjustPos(rc, pt);
+			//m_pFileMenuDlg->ShowWnd();
+			if (m_pFileMenuDlg->ShowModal() == IDOK)
+			{
+			int k = 0;
+			}
+			//delete m_pFileMenuDlg;
+			//m_pFileMenuDlg = nullptr;
+		}
+		else if (msg.pSender == m_pBtnTitleFile)
+		{
+			std::thread th(&CMainFrame::OpenLocalPdfFile, this);
+			th.detach();
+		}
+		else if (msg.pSender == m_pBtnTitleFile)
+		{
+			std::thread th(&CMainFrame::OpenLocalPdfFile, this);
+			th.detach();
+		}
+		else if (msg.pSender == m_pBtnTitleFile)
+		{
+			std::thread th(&CMainFrame::OpenLocalPdfFile, this);
+			th.detach();
+		}
+		else if (msg.pSender == m_pBtnTitleFile)
+		{
+			std::thread th(&CMainFrame::OpenLocalPdfFile, this);
+			th.detach();
 		}
 	}
 }
