@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Window size="140,70" bktrans="true">
+    <Font size="12" bold="false" italic="false" default="true" />
+    <VerticalLayout bkcolor="0xffffffff" inset="3,3,3,3" bordersize="1" bordercolor="0xffafafaf">
+        <List name="pkg_menu" header="hidden" bkcolor="#FFFFFFFF" textcolor="#FF484848" itemhotbkcolor="#FF51A8F1" itemselectedimage="file='main_left_navigation.png' source='0,70,178,140'" itemdisabledimage="file='main_left_navigation.png' source='0,0,178,35'" >
+			<TrayListElement height="35" name="check_menu_verify" traytexthotcolor="0xFFFFFFFF" traytext="验签" traydisabledcolor="#FFB9B9B9"
+			traynormalimage="file='TGWeb.png' source='0,0,16,16' dest='10,10,26,26'" trayhotimage="file='TGWeb.png' source='0,0,16,16' dest='10,10,26,26'" traytextpadding="36,10,0,10"/>
+			<TrayListElement height="35" name="check_menu_scan" traytexthotcolor="0xFFFFFFFF" traytext="时间戳查看" traynormalimage="file='TGWeb.png' source='0,0,16,16' dest='10,10,26,26'" trayhotimage="file='TGWeb.png' source='0,0,16,16' dest='10,10,26,26'" traytextpadding="36,10,0,10"/>
+        </List>
+    </VerticalLayout>
+</Window>

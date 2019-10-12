@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Window size="140,140" bktrans="true">
+    <Font size="12" bold="false" italic="false" default="true" />
+    <VerticalLayout bkcolor="0xffffffff" inset="3,3,3,3" bordersize="1" bordercolor="0xffafafaf">
+        <List name="pkg_menu" header="hidden" bkcolor="#FFFFFFFF" textcolor="#FF484848" itemhotbkcolor="#FF51A8F1" itemselectedimage="file='main_left_navigation.png' source='0,70,178,140'" itemdisabledimage="file='main_left_navigation.png' source='0,0,178,35'" >
+			<TrayListElement height="35" name="sign_menu_single" traytexthotcolor="0xFFFFFFFF" traytext="单页签章" traydisabledcolor="#FFB9B9B9"
+			traynormalimage="file='TGWeb.png' source='0,0,16,16' dest='10,10,26,26'" trayhotimage="file='TGWeb.png' source='0,0,16,16' dest='10,10,26,26'" traytextpadding="36,10,0,10"/>
+			<TrayListElement height="35" name="sign_menu_mult" traytexthotcolor="0xFFFFFFFF" traytext="多页签章" traynormalimage="file='TGWeb.png' source='0,0,16,16' dest='10,10,26,26'" trayhotimage="file='TGWeb.png' source='0,0,16,16' dest='10,10,26,26'" traytextpadding="36,10,0,10"/>
+			<TrayListElement height="35" name="sign_menu_chink" traytexthotcolor="0xFFFFFFFF" traytext="骑缝签" traynormalimage="file='TGWeb.png' source='0,0,16,16' dest='10,10,26,26'" trayhotimage="file='TGWeb.png' source='0,0,16,16' dest='10,10,26,26'" traytextpadding="36,10,0,10"/>
+			<TrayListElement height="35" name="sign_menu_key" traytexthotcolor="0xFFFFFFFF" traytext="关键字盖章"  traynormalimage="file='TGWeb.png' source='0,0,16,16' dest='10,10,26,26'" trayhotimage="file='TGWeb.png' source='0,0,16,16' dest='10,10,26,26'" traytextpadding="36,10,0,10"/>
+        </List>
+    </VerticalLayout>
+</Window>

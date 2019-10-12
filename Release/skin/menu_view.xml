@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Window size="140,140" bktrans="true">
+    <Font size="12" bold="false" italic="false" default="true" />
+    <VerticalLayout bkcolor="0xffffffff" inset="3,3,3,3" bordersize="1" bordercolor="0xffafafaf">
+        <List name="pkg_menu" header="hidden" bkcolor="#FFFFFFFF" textcolor="#FF484848" itemhotbkcolor="#FF51A8F1" itemselectedimage="file='main_left_navigation.png' source='0,70,178,140'" itemdisabledimage="file='main_left_navigation.png' source='0,0,178,35'" >
+			<TrayListElement height="35" name="view_menu_back" traytexthotcolor="0xFFFFFFFF" traytext="上一个视图" traydisabledcolor="#FFB9B9B9"
+			traynormalimage="file='TGWeb.png' source='0,0,16,16' dest='10,10,26,26'" trayhotimage="file='TGWeb.png' source='0,0,16,16' dest='10,10,26,26'" traytextpadding="36,10,0,10"/>
+			<TrayListElement height="35" name="view_menu_next" traytexthotcolor="0xFFFFFFFF" traytext="下一个视图" traynormalimage="file='TGWeb.png' source='0,0,16,16' dest='10,10,26,26'" trayhotimage="file='TGWeb.png' source='0,0,16,16' dest='10,10,26,26'" traytextpadding="36,10,0,10"/>
+			<TrayListElement height="35" name="view_menu_percent" traytexthotcolor="0xFFFFFFFF" traytext="百分比" traynormalimage="file='TGWeb.png' source='0,0,16,16' dest='10,10,26,26'" trayhotimage="file='TGWeb.png' source='0,0,16,16' dest='10,10,26,26'" traytextpadding="36,10,0,10"/>
+			<TrayListElement height="35" name="view_menu_test" traytexthotcolor="0xFFFFFFFF" traytext="调用JS函数" traynormalimage="file='TGWeb.png' source='0,0,16,16' dest='10,10,26,26'" trayhotimage="file='TGWeb.png' source='0,0,16,16' dest='10,10,26,26'" traytextpadding="36,10,0,10"/>
+        </List>
+    </VerticalLayout>
+</Window>
