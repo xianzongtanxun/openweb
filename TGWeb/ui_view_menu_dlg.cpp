@@ -1,37 +1,37 @@
 #include "stdafx.h"
-#include "ui_file_menu_dlg.h"
+#include "ui_view_menu_dlg.h"
 #include "MainFrame.h"
 #include "ui_list_element.h"
 
-const int FLAG_WIDTT = 172;
-CFileMenuDlg::CFileMenuDlg(CMainFrame* pMain)
+CViewMenuDlg::CViewMenuDlg(CMainFrame* pMain)
 	:m_pMainFrame(pMain)
-	, m_pBtnOpen(nullptr)
-	, m_pBtnSave(nullptr)
-	, m_pBtnSaveAs(nullptr)
-	, m_pBtnPrint(nullptr)
-{
-}
-
-CFileMenuDlg::~CFileMenuDlg()
+	, m_pBtnNext(nullptr)
+	, m_pBtnPercent(nullptr)
+	, m_pBtnCallJS(nullptr)
 {
 
-}
+}	 
 
-void CFileMenuDlg::InitWindow()
+CViewMenuDlg::~CViewMenuDlg()
 {
-	m_pBtnOpen   = static_cast<CTrayListElementUI*>(m_PaintManager.FindControl(_T("file_menu_open")));
-	m_pBtnSave   = static_cast<CTrayListElementUI*>(m_PaintManager.FindControl(_T("file_menu_save")));
-	m_pBtnSaveAs = static_cast<CTrayListElementUI*>(m_PaintManager.FindControl(_T("file_menu_saveas")));
-	m_pBtnPrint  = static_cast<CTrayListElementUI*>(m_PaintManager.FindControl(_T("file_menu_print")));
 
-	ASSERT(m_pBtnOpen);
-	ASSERT(m_pBtnSave);
-	ASSERT(m_pBtnSaveAs);
-	ASSERT(m_pBtnPrint);
 }
 
-HWND CFileMenuDlg::Create(HWND hwnd)
+void CViewMenuDlg::InitWindow()
+{
+	m_pBtnBack     = static_cast<CTrayListElementUI*>(m_PaintManager.FindControl(_T("view_menu_back")));
+	m_pBtnNext     = static_cast<CTrayListElementUI*>(m_PaintManager.FindControl(_T("view_menu_next")));
+	m_pBtnPercent  = static_cast<CTrayListElementUI*>(m_PaintManager.FindControl(_T("view_menu_percent")));
+	m_pBtnCallJS   = static_cast<CTrayListElementUI*>(m_PaintManager.FindControl(_T("view_menu_test")));
+	
+
+	ASSERT(m_pBtnBack);
+	ASSERT(m_pBtnNext);
+	ASSERT(m_pBtnPercent);
+	ASSERT(m_pBtnCallJS);
+}
+
+HWND CViewMenuDlg::Create(HWND hwnd)
 {
 	HWND hWnd = __super::Create(hwnd, GetWindowClassName(), UI_WNDSTYLE_DIALOG, 0, 0, 0, 0);
 	CenterWindow();
@@ -40,7 +40,7 @@ HWND CFileMenuDlg::Create(HWND hwnd)
 	return hWnd;
 }
 
-void CFileMenuDlg::AdjustPos(RECT& rc, POINT pt)
+void CViewMenuDlg::AdjustPos(RECT& rc, POINT pt)
 {
 	m_ptPos = pt;
 	MONITORINFO oMonitor = { 0 };
@@ -79,18 +79,18 @@ void CFileMenuDlg::AdjustPos(RECT& rc, POINT pt)
 }
 
 
-void CFileMenuDlg::ShowWnd()
+void CViewMenuDlg::ShowWnd()
 {
 	ShowWindow(true);
 }
 
-void CFileMenuDlg::Notify(TNotifyUI& msg)
+void CViewMenuDlg::Notify(TNotifyUI& msg)
 {
 	if (msg.sType == DUI_MSGTYPE_ITEMCLICK)
 	{
-		if (msg.pSender == m_pBtnOpen)
+		if (msg.pSender == m_pBtnCallJS)
 		{
-			::PostMessage(m_pMainFrame->GetHWND(), WM_OPEN_PDF_FILE, 0, 0);
+			::PostMessage(m_pMainFrame->GetHWND(), WM_MSG_CALL_JS, NULL, NULL);
 			int k = 0;
 			
 		}
@@ -98,14 +98,14 @@ void CFileMenuDlg::Notify(TNotifyUI& msg)
 	}
 }
 
-LRESULT CFileMenuDlg::HandleMessage(UINT uMsg, WPARAM wParam, LPARAM lParam)
+LRESULT CViewMenuDlg::HandleMessage(UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
 	LRESULT lRes = 0;
 
 	return __super::HandleMessage(uMsg, wParam, lParam);
 }
 
-LRESULT CFileMenuDlg::OnKillFocus(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled)
+LRESULT CViewMenuDlg::OnKillFocus(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled)
 {
 	if (this->m_hWnd != (HWND)wParam)
 	{
@@ -114,13 +114,13 @@ LRESULT CFileMenuDlg::OnKillFocus(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL&
 	return 0;
 }
 
-LRESULT CFileMenuDlg::OnKeyDown(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled)
+LRESULT CViewMenuDlg::OnKeyDown(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled)
 {
 	PostMessage(WM_CLOSE);
 	return 0;
 }
 
-CControlUI* CFileMenuDlg::CreateControl(LPCTSTR pstrClass) {
+CControlUI* CViewMenuDlg::CreateControl(LPCTSTR pstrClass) {
 	if (_tcscmp(pstrClass, _T("TrayListElement")) == 0)
 	{
 		return new CTrayListElementUI();

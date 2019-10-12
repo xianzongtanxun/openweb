@@ -1,37 +1,31 @@
 #include "stdafx.h"
-#include "ui_file_menu_dlg.h"
+#include "ui_check_menu_dlg.h"
 #include "MainFrame.h"
 #include "ui_list_element.h"
 
 const int FLAG_WIDTT = 172;
-CFileMenuDlg::CFileMenuDlg(CMainFrame* pMain)
+CCheckMenuDlg::CCheckMenuDlg(CMainFrame* pMain)
 	:m_pMainFrame(pMain)
-	, m_pBtnOpen(nullptr)
-	, m_pBtnSave(nullptr)
-	, m_pBtnSaveAs(nullptr)
-	, m_pBtnPrint(nullptr)
+	, m_pBtnVerify(nullptr)
+	, m_pBtnScan(nullptr)
 {
 }
 
-CFileMenuDlg::~CFileMenuDlg()
+CCheckMenuDlg::~CCheckMenuDlg()
 {
 
 }
 
-void CFileMenuDlg::InitWindow()
+void CCheckMenuDlg::InitWindow()
 {
-	m_pBtnOpen   = static_cast<CTrayListElementUI*>(m_PaintManager.FindControl(_T("file_menu_open")));
-	m_pBtnSave   = static_cast<CTrayListElementUI*>(m_PaintManager.FindControl(_T("file_menu_save")));
-	m_pBtnSaveAs = static_cast<CTrayListElementUI*>(m_PaintManager.FindControl(_T("file_menu_saveas")));
-	m_pBtnPrint  = static_cast<CTrayListElementUI*>(m_PaintManager.FindControl(_T("file_menu_print")));
+	m_pBtnVerify = static_cast<CTrayListElementUI*>(m_PaintManager.FindControl(_T("check_menu_verify")));
+	m_pBtnScan   = static_cast<CTrayListElementUI*>(m_PaintManager.FindControl(_T("check_menu_scan")));
 
-	ASSERT(m_pBtnOpen);
-	ASSERT(m_pBtnSave);
-	ASSERT(m_pBtnSaveAs);
-	ASSERT(m_pBtnPrint);
+	ASSERT(m_pBtnVerify);
+	ASSERT(m_pBtnScan);
 }
 
-HWND CFileMenuDlg::Create(HWND hwnd)
+HWND CCheckMenuDlg::Create(HWND hwnd)
 {
 	HWND hWnd = __super::Create(hwnd, GetWindowClassName(), UI_WNDSTYLE_DIALOG, 0, 0, 0, 0);
 	CenterWindow();
@@ -40,7 +34,7 @@ HWND CFileMenuDlg::Create(HWND hwnd)
 	return hWnd;
 }
 
-void CFileMenuDlg::AdjustPos(RECT& rc, POINT pt)
+void CCheckMenuDlg::AdjustPos(RECT& rc, POINT pt)
 {
 	m_ptPos = pt;
 	MONITORINFO oMonitor = { 0 };
@@ -79,33 +73,27 @@ void CFileMenuDlg::AdjustPos(RECT& rc, POINT pt)
 }
 
 
-void CFileMenuDlg::ShowWnd()
+void CCheckMenuDlg::ShowWnd()
 {
 	ShowWindow(true);
 }
 
-void CFileMenuDlg::Notify(TNotifyUI& msg)
+void CCheckMenuDlg::Notify(TNotifyUI& msg)
 {
 	if (msg.sType == DUI_MSGTYPE_ITEMCLICK)
 	{
-		if (msg.pSender == m_pBtnOpen)
-		{
-			::PostMessage(m_pMainFrame->GetHWND(), WM_OPEN_PDF_FILE, 0, 0);
-			int k = 0;
-			
-		}
+		int k = 0;
 		this->Close();
 	}
 }
 
-LRESULT CFileMenuDlg::HandleMessage(UINT uMsg, WPARAM wParam, LPARAM lParam)
+LRESULT CCheckMenuDlg::HandleMessage(UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
 	LRESULT lRes = 0;
-
 	return __super::HandleMessage(uMsg, wParam, lParam);
 }
 
-LRESULT CFileMenuDlg::OnKillFocus(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled)
+LRESULT CCheckMenuDlg::OnKillFocus(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled)
 {
 	if (this->m_hWnd != (HWND)wParam)
 	{
@@ -114,13 +102,13 @@ LRESULT CFileMenuDlg::OnKillFocus(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL&
 	return 0;
 }
 
-LRESULT CFileMenuDlg::OnKeyDown(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled)
+LRESULT CCheckMenuDlg::OnKeyDown(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled)
 {
 	PostMessage(WM_CLOSE);
 	return 0;
 }
 
-CControlUI* CFileMenuDlg::CreateControl(LPCTSTR pstrClass) {
+CControlUI* CCheckMenuDlg::CreateControl(LPCTSTR pstrClass) {
 	if (_tcscmp(pstrClass, _T("TrayListElement")) == 0)
 	{
 		return new CTrayListElementUI();

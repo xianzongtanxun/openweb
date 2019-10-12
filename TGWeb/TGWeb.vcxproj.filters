@@ -60,6 +60,15 @@
     <ClInclude Include="ui_file_menu_dlg.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="ui_check_menu_dlg.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="ui_sign_menu_dlg.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="ui_view_menu_dlg.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -99,6 +108,15 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="ui_file_menu_dlg.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="ui_check_menu_dlg.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="ui_sign_menu_dlg.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="ui_view_menu_dlg.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

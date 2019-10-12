@@ -50,5 +50,7 @@ using namespace DuiLib;
 #define WM_MSG_SHOW     (WM_USER + 2002)
 #define WM_COPY_STOP    (WM_USER + 2003)
 #define WM_MSG_NAVIGATION (WM_USER + 2004)
+#define WM_OPEN_PDF_FILE (WM_USER + 2005)
+#define WM_MSG_CALL_JS   (WM_USER + 2006)
 
 // TODO: 在此处引用程序需要的其他头文件

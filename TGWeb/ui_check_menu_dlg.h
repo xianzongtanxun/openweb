@@ -1,17 +1,17 @@
-#ifndef _UI_FILE_MENU_H_
-#define _UI_FILE_MENU_H_
+#ifndef _UI_CHECK_MENU_H_
+#define _UI_CHECK_MENU_H_
 
 class CTrayListElementUI;
 class CMainFrame;
-class CFileMenuDlg : public WindowImplBase {
+class CCheckMenuDlg : public WindowImplBase {
 public:
-	CFileMenuDlg(CMainFrame* pMain);
-	~CFileMenuDlg();
+	CCheckMenuDlg(CMainFrame* pMain);
+	~CCheckMenuDlg();
 	void InitWindow();
 	HWND Create(HWND hwnd);
-	virtual LPCTSTR GetWindowClassName() const { return _T("UI_FILE_MENU_DLG"); }
+	virtual LPCTSTR GetWindowClassName() const { return _T("UI_CHECK_MENU_DLG"); }
 	void Notify(TNotifyUI& msg);
-	CDuiString GetSkinFile() { return _T("menu_file.xml"); }
+	CDuiString GetSkinFile() { return _T("menu_check.xml"); }
 	CDuiString GetSkinFolder() { return _T("skin"); }
 	UILIB_RESOURCETYPE GetResourceType() const {
 		return UILIB_FILE;
@@ -29,11 +29,9 @@ public:
 private:
 	POINT m_ptPos;
 	ShadowHelp m_shadowHelp;
-	CTrayListElementUI* m_pBtnOpen;
-	CTrayListElementUI*	m_pBtnSave;
-	CTrayListElementUI*	m_pBtnSaveAs;
-	CTrayListElementUI*	m_pBtnPrint;
+	CTrayListElementUI* m_pBtnVerify;
+	CTrayListElementUI*	m_pBtnScan;
 	CMainFrame* m_pMainFrame;
 };
 
-#endif // !_UI_FILE_MENU_H_
+#endif // !_UI_CHECK_MENU_H_

@@ -96,8 +96,11 @@
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="TGWeb.h" />
+    <ClInclude Include="ui_check_menu_dlg.h" />
     <ClInclude Include="ui_file_menu_dlg.h" />
     <ClInclude Include="ui_list_element.h" />
+    <ClInclude Include="ui_sign_menu_dlg.h" />
+    <ClInclude Include="ui_view_menu_dlg.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CCefRequestContextHandlerEx.cpp">
@@ -119,8 +122,11 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="TGWeb.cpp" />
+    <ClCompile Include="ui_check_menu_dlg.cpp" />
     <ClCompile Include="ui_file_menu_dlg.cpp" />
     <ClCompile Include="ui_list_element.cpp" />
+    <ClCompile Include="ui_sign_menu_dlg.cpp" />
+    <ClCompile Include="ui_view_menu_dlg.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="TGWeb.rc" />

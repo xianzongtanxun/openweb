@@ -16,6 +16,7 @@ public:
 	void SetCurrentUrl(wstring sCaption);
 	void SetWebCookies(std::wstring domain, std::wstring key, std::wstring sValue);
 	void OpenLocalPdfFile();
+	void CallJsFucntion();
 private:
 	DuiLib::CDuiString GetSkinFile();
     void InitWindow();

@@ -14,6 +14,9 @@
 #include "include/base/cef_bind_helpers.h"
 #include "CCookieVistor.h"
 #include "ui_file_menu_dlg.h"
+#include "ui_view_menu_dlg.h"
+#include "ui_check_menu_dlg.h"
+#include "ui_sign_menu_dlg.h"
 ///////////////////////////
 CMainFrame::CMainFrame(const string& sInitUrl, const string& sInitParam) :
 	m_pLblTitle(nullptr),   
@@ -275,8 +278,7 @@ LRESULT CMainFrame::HandleMessage(UINT uMsg, WPARAM wParam, LPARAM lParam)
 			::GetClientRect(GetHWND(), &rc);
 			rc.top = rc.top + 36 + 40;
 			windows_info.SetAsChild(GetHWND(), rc);
-			CefRequestContextSettings recoSetting;
-
+			/*CefRequestContextSettings recoSetting;
 			wchar_t buffer[MAX_PATH] = { 0 };
 			ULONG name_size = ::GetModuleFileNameW(NULL, buffer, MAX_PATH);
 			if (name_size == 0) {
@@ -287,9 +289,9 @@ LRESULT CMainFrame::HandleMessage(UINT uMsg, WPARAM wParam, LPARAM lParam)
 			strCookiePath.append(_T("\\WebCookies"));
 			CefString(&recoSetting.cache_path).FromWString(strCookiePath);
 			handlerCookies = new CCefRequestContextHandlerEx();
-			CefRefPtr<CefRequestContext> cefReCo = CefRequestContext::CreateContext(recoSetting, handlerCookies);
+			CefRefPtr<CefRequestContext> cefReCo = CefRequestContext::CreateContext(recoSetting, handlerCookies);*/
 
-			bool bRet = CefBrowserHost::CreateBrowser(windows_info, m_handler, url, browser_settings, cefReCo);
+			bool bRet = CefBrowserHost::CreateBrowser(windows_info, m_handler, url, browser_settings, NULL);
 			int k = 0;
 		}
 		break;
@@ -319,30 +321,23 @@ LRESULT CMainFrame::HandleMessage(UINT uMsg, WPARAM wParam, LPARAM lParam)
 			PostQuitMessage(0);
 		}
 		break;
+	case WM_OPEN_PDF_FILE:
+	{
+		std::thread th(&CMainFrame::OpenLocalPdfFile, this);
+		th.detach();
+		break;
+	}
+	case WM_MSG_CALL_JS:
+	{
+		std::thread th(&CMainFrame::CallJsFucntion, this);
+		th.detach();
+		break;
+	}
 	default:
 		break;
 	}
 	if (bHandled) return lRes;
 	return __super::HandleMessage(uMsg, wParam, lParam);
-}
-
-void CMainFrame::SetWebCookies(std::wstring domain, std::wstring key, std::wstring sValue)
-{
-	CefRefPtr<CefCookieManager> manager = CefCookieManager::GetGlobalManager(NULL);
-	CefRefPtr<CefSetCookieCallback> callback = NULL;
-	CefCookie cookie;
-	CefString(&cookie.name).FromWString(key.c_str());
-	CefString(&cookie.value).FromWString(sValue.c_str());
-	CefString(&cookie.domain).FromWString(domain.c_str());
-	CefString(&cookie.path).FromWString(_T("D:\\codeTest\\openweb\\Release\\CefCookie"));
-	cookie.has_expires = true;
-	//std::wstring httpDomain = _T("http://testfront.tsign.cn:8870/oauth/show?redirectUri=https://localhost:7688/TGRedirect&responseType=code&appId=3876544261&scope=get_user_info,op_seal&state=1&flowId=1&platformAccountId=8ac8019401a5454fb1ea7e01aa0e81e8&platformOrgId=7efb35cf060c407190fa8554a0858743&platformIdCardNum=43021919800312105X");
-	std::wstring httpDomain = _T("http://");
-	httpDomain.append(domain);
-	//manager->SetCookie(httpDomain.c_str(), cookie, NULL);
-	//base::IgnoreResult(&CefCookieManager::SetCookie);
-	std::thread th(&CefCookieManager::SetCookie, manager.get(),httpDomain.c_str(), cookie, callback);
-	th.detach();
 }
 
 void CMainFrame::OpenLocalPdfFile()
@@ -355,7 +350,7 @@ void CMainFrame::OpenLocalPdfFile()
 	ofn.hwndOwner = *this;
 	ofn.lpstrFile = szFile;
 	ofn.nMaxFile = sizeof(szFile);
-	ofn.lpstrFilter = _T(".pdf");
+	ofn.lpstrFilter = _T("PDFÎÄ¼þ(.pdf)\0*.pdf*\0");
 	ofn.nFilterIndex = 1;
 	ofn.lpstrFileTitle = NULL;
 	ofn.nMaxFileTitle = 0;
@@ -368,8 +363,30 @@ void CMainFrame::OpenLocalPdfFile()
 		{
 			CDuiString strUrl = _T("https://localhost:7688/index.html/?file=");
 			strUrl.Append(ofn.lpstrFile);
-			m_handler->GetBrowser()->GetMainFrame()->LoadURL(strUrl.GetData());
+			USES_CONVERSION;
+			string strName = W2A(ofn.lpstrFile);
+			int iPos = strName.find(".pdf");
+			if (iPos != std::string::npos)
+			{
+				m_handler->GetBrowser()->GetMainFrame()->LoadURL(strUrl.GetData());
+			}
 		}
+	}
+}
+
+void CMainFrame::CallJsFucntion()
+{
+	CefRefPtr<CefFrame> frame = m_handler->GetBrowser()->GetMainFrame();
+	if (frame) {
+		CefString strCode;
+		USES_CONVERSION;
+		CDuiString strData;
+		strData.Format(_T("functionjs();"));
+		strCode = strData.GetData();
+		OutputDebugStringA("\n");
+		OutputDebugStringA("client ExecuteJavaScript");
+		OutputDebugStringA("\n");
+		frame->ExecuteJavaScript(strCode, frame->GetURL(), 0);
 	}
 }
 
@@ -446,43 +463,47 @@ void CMainFrame::Notify(TNotifyUI& msg)
 		}
 		else if (msg.pSender == m_pBtnMenuFile)
 		{
-			//if (!m_pFileMenuDlg)
-			//{
-				m_pFileMenuDlg = new CFileMenuDlg(this);
-				m_pFileMenuDlg->Create(GetHWND());
-			//}
+			m_pFileMenuDlg = new CFileMenuDlg(this);
+			m_pFileMenuDlg->Create(GetHWND());
 			RECT rc = m_pBtnMenuFile->GetPos();
 			rc.top += 24;
 			POINT pt = { 0 };
 			::GetCursorPos(&pt);
 			m_pFileMenuDlg->AdjustPos(rc, pt);
-			//m_pFileMenuDlg->ShowWnd();
-			if (m_pFileMenuDlg->ShowModal() == IDOK)
-			{
-			int k = 0;
-			}
-			//delete m_pFileMenuDlg;
-			//m_pFileMenuDlg = nullptr;
+			m_pFileMenuDlg->ShowWnd();
 		}
-		else if (msg.pSender == m_pBtnTitleFile)
+		else if (msg.pSender == m_pBtnMenuView)
 		{
-			std::thread th(&CMainFrame::OpenLocalPdfFile, this);
-			th.detach();
+			CViewMenuDlg *m_pViewMenuDlg = new CViewMenuDlg(this);
+			m_pViewMenuDlg->Create(GetHWND());
+			RECT rc = m_pBtnMenuView->GetPos();
+			rc.top += 24;
+			POINT pt = { 0 };
+			::GetCursorPos(&pt);
+			m_pViewMenuDlg->AdjustPos(rc, pt);
+			m_pViewMenuDlg->ShowWnd();
 		}
-		else if (msg.pSender == m_pBtnTitleFile)
+		else if (msg.pSender == m_pBtnMenuSign)
 		{
-			std::thread th(&CMainFrame::OpenLocalPdfFile, this);
-			th.detach();
+			CSignMenuDlg *m_pSignMenuDlg = new CSignMenuDlg(this);
+			m_pSignMenuDlg->Create(GetHWND());
+			RECT rc = m_pBtnMenuSign->GetPos();
+			rc.top += 24;
+			POINT pt = { 0 };
+			::GetCursorPos(&pt);
+			m_pSignMenuDlg->AdjustPos(rc, pt);
+			m_pSignMenuDlg->ShowWnd();
 		}
-		else if (msg.pSender == m_pBtnTitleFile)
+		else if (msg.pSender == m_pBtnMenuCheck)
 		{
-			std::thread th(&CMainFrame::OpenLocalPdfFile, this);
-			th.detach();
-		}
-		else if (msg.pSender == m_pBtnTitleFile)
-		{
-			std::thread th(&CMainFrame::OpenLocalPdfFile, this);
-			th.detach();
+			CCheckMenuDlg *m_pCheckMenuDlg = new CCheckMenuDlg(this);
+			m_pCheckMenuDlg->Create(GetHWND());
+			RECT rc = m_pBtnMenuCheck->GetPos();
+			rc.top += 24;
+			POINT pt = { 0 };
+			::GetCursorPos(&pt);
+			m_pCheckMenuDlg->AdjustPos(rc, pt);
+			m_pCheckMenuDlg->ShowWnd();
 		}
 	}
 }
